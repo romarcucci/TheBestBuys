@@ -1,0 +1,86 @@
+/* styles.css */
+.app {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+  }
+  
+  .search-bar {
+    padding: 5px;
+    font-size: 1em;
+  }
+  
+  .category-nav ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .category-nav li {
+    display: inline;
+    margin: 0 10px;
+  }
+  
+  .hero-section {
+    text-align: center;
+  }
+  
+  .chatbot-init-button {
+    font-size: 1.2em;
+    padding: 10px;
+  }
+  
+  .product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .product-category {
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+  }
+  
+  .product-category .category-icon {
+    font-size: 2em;
+  }
+  
+  .product-recommendations {
+    padding: 20px;
+  }
+  
+  .product-recommendations ul {
+    list-style: none;
+  }
+  
+  .chatbot-interface {
+    border: 1px solid #ccc;
+    padding: 20px;
+  }
+  
+  .chat-log {
+    height: 150px;
+    overflow-y: auto;
+  }
+  
+  .chat-msg {
+    padding: 5px;
+  }
+  
+  .chat-msg.user {
+    text-align: right;
+  }
+  
+  .chat-msg.bot {
+    text-align: left;
+  }
+  

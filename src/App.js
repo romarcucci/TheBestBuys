@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Header from './components/Header';
+import HeroSection from './components/HeroSection';
+import ProductGrid from './components/ProductGrid';
+import ChatbotInterface from './components/ChatbotInterface';
+import ProductRecommendations from './components/ProductRecommendations';
 
-function App() {
+const App = () => {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [showChatbot, setShowChatbot] = useState(false);
+  const [productRecommendations, setProductRecommendations] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Header />
+      <HeroSection onChatbotInit={() => setShowChatbot(true)} />
+      {!showChatbot && !selectedCategory && (
+        <ProductGrid onCategorySelect={setSelectedCategory} />
+      )}
+      {showChatbot && (
+        <ChatbotInterface
+          selectedCategory={selectedCategory}
+          onRecommendations={setProductRecommendations}
+        />
+      )}
+      {productRecommendations.length > 0 && (
+        <ProductRecommendations
+          products={productRecommendations}
+          reset={() => {
+            setProductRecommendations([]);
+            setSelectedCategory(null);
+            setShowChatbot(false);
+          }}
+        />
+      )}
     </div>
   );
-}
+};
 
 export default App;
