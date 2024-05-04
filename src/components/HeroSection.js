@@ -1,13 +1,12 @@
 import React from 'react';
 import robotImage from '../assets/robot.jpeg';
+import '../styles/HeroSection.css';
 
-const HeroSection = ({ onChatbotInit }) => {
+const HeroSection = () => {
   return (
     <section className="hero-section">
-      <img src={robotImage} alt="Robot" />
-      <button className="chatbot-init-button" onClick={onChatbotInit}>
-        Hello, what are you looking for?
-      </button>
+      <img src={robotImage} alt="Robot" className="hero-image" />
+      <div className="hero-message">Hello, what are you looking for?</div>
     </section>
   );
 };
