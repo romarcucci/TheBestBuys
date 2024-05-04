@@ -1,0 +1,59 @@
+// Define reusable variables for common styles in the product grid
+$product-grid-width: 66.6667%; // Default width for the product grid
+$product-category-width: 20%; // Default width for each product category
+$product-padding: 20px; // Padding for product categories
+$product-margin: 10px; // Margin for product categories
+$product-transition: 0.3s; // Transition duration for hover effects
+$product-bg-color: #f2f2f2; // Background color for product categories
+$product-border-color: #ccc; // Border color for product categories
+$product-hover-bg: #e0e0e0; // Background color on hover
+$product-icon-size: 5em; // Default size for icons
+$product-icon-color: #4d4d4d; // Default color for icons
+$product-font-family: Arial, sans-serif; // Font family for category labels
+
+// Style for the product grid container
+.product-grid {
+  display: flex; // Use flexbox for layout
+  flex-wrap: wrap; // Allow wrapping of elements
+  justify-content: center; // Center items horizontally
+  width: $product-grid-width; // Set the grid width
+  margin: 0 auto; // Center the grid within its parent
+}
+
+// Style for individual product categories
+.product-category {
+  text-align: center; // Align text to the center
+  background-color: $product-bg-color; // Background color
+  border: 1px solid $product-border-color; // Border style
+  padding: $product-padding; // Padding around the category
+  margin: $product-margin; // Margin between categories
+  flex-basis: $product-category-width; // Set the width for each category
+  cursor: pointer; // Change cursor to indicate interactivity
+  transition: background-color $product-transition; // Smooth transition on hover
+
+  &:hover {
+    background-color: $product-hover-bg; // Change background color on hover
+  }
+}
+
+// Style for the icon wrapper
+.icon-wrapper {
+  display: flex; // Use flexbox for centering
+  justify-content: center; // Center horizontally
+  align-items: center; // Center vertically
+  height: 100px; // Set a fixed height for the icon wrapper
+
+  svg {
+    font-size: $product-icon-size; // Set the size of SVG icons
+    color: $product-icon-color; // Set the color of SVG icons
+  }
+}
+
+// Style for the category label
+.category-label {
+  font-family: $product-font-family; // Set the font family
+  text-transform: uppercase; // Convert text to uppercase
+  color: $product-icon-color; // Set the text color
+  margin-top: 10px; // Add margin above the label
+  display: block; // Ensure the label is displayed as a block element
+}

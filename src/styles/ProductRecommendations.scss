@@ -1,0 +1,50 @@
+// Define common style properties for the product recommendations component
+$product-recommendations-font-size: 1.5rem; // Font size for the section title
+$product-tile-gap: 10px; // Default gap between product tiles
+$product-tile-padding: 10px; // Padding for each product tile
+$product-border-color: #ccc; // Border color for product tiles
+$product-border-radius: 5px; // Border radius for rounded corners
+$product-bg-color: #f9f9f9; // Background color for product tiles
+$product-hover-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1); // Shadow on hover
+$product-transition: 0.3s; // Transition time for animations
+$product-link-color: #000; // Color for links
+$product-span-font-size: 1rem; // Font size for product names
+
+// Style for the product recommendations section
+.product-recommendations {
+  h2 {
+    font-size: $product-recommendations-font-size; // Set font size for the title
+  }
+
+  // Style for the list containing product tiles
+  .product-list {
+    display: flex; // Use flexbox for layout
+    flex-wrap: wrap; // Allow wrapping of tiles
+    gap: $product-tile-gap; // Space between tiles
+  }
+
+  // Style for individual product tiles
+  .product-tile {
+    padding: $product-tile-padding; // Padding around each tile
+    border: 1px solid $product-border-color; // Border color
+    border-radius: $product-border-radius; // Rounded corners
+    background-color: $product-bg-color; // Background color
+    transition: all $product-transition; // Smooth transitions
+
+    &:hover {
+      box-shadow: $product-hover-box-shadow; // Add a shadow on hover
+    }
+
+    a {
+      text-decoration: none; // Remove underline from links
+      color: $product-link-color; // Set link color
+      display: flex; // Use flexbox to align content
+      align-items: center; // Center content vertically
+      gap: 5px; // Space between icon and text
+    }
+
+    span {
+      font-size: $product-span-font-size; // Font size for product names
+    }
+  }
+}

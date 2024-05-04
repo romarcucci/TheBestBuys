@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { FaPaperPlane } from 'react-icons/fa';
-import PropTypes from 'prop-types';
-import '../styles/ChatbotInterface.css';
+import '../styles/ChatbotInterface.scss';
 
 const ChatbotInterface = ({ selectedCategory, onRecommendations }) => {
   const [chatLog, setChatLog] = useState([]);
@@ -18,12 +17,6 @@ const ChatbotInterface = ({ selectedCategory, onRecommendations }) => {
     }
   }, [selectedCategory]);
 
-  useEffect(() => {
-    if (chatLogRef.current) {
-      chatLogRef.current.scrollTop = chatLogRef.current.scrollHeight;
-    }
-  }, [chatLog]);
-
   const sendMessage = async () => {
     if (currentInput.trim() === '') {
       return; // Exit if the input is empty
@@ -31,10 +24,9 @@ const ChatbotInterface = ({ selectedCategory, onRecommendations }) => {
 
     setIsLoading(true);
 
-    // Add the user's message to the chat log
     setChatLog((prev) => [...prev, { type: 'user', content: currentInput }]);
-    const userMessage = currentInput; // Save the message
-    setCurrentInput(''); // Clear the input field
+    const userMessage = currentInput;
+    setCurrentInput('');
 
     try {
       const response = await axios.post('http://localhost:3000/chat', {
@@ -46,21 +38,19 @@ const ChatbotInterface = ({ selectedCategory, onRecommendations }) => {
         response.data.message &&
         typeof response.data.message.content === 'string'
       ) {
-        // Add the bot's response to the chat log
         setChatLog((prev) => [
           ...prev,
           { type: 'bot', content: response.data.message.content },
         ]);
 
         const recommendations = response.data.productRecommendations || [];
-        onRecommendations(recommendations);
+        onRecommendations(recommendations); // Pass recommendations to parent
       } else {
         throw new Error('Invalid response structure');
       }
     } catch (error) {
       console.error('Error sending message:', error);
 
-      // Add error message to the chat log
       setChatLog((prev) => [
         ...prev,
         {
@@ -73,6 +63,12 @@ const ChatbotInterface = ({ selectedCategory, onRecommendations }) => {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (chatLogRef.current) {
+      chatLogRef.current.scrollTop = chatLogRef.current.scrollHeight;
+    }
+  }, [chatLog]);
 
   return (
     <div className="chatbot-interface">
@@ -106,17 +102,6 @@ const ChatbotInterface = ({ selectedCategory, onRecommendations }) => {
       </div>
     </div>
   );
-};
-
-// Set default props
-ChatbotInterface.defaultProps = {
-  onRecommendations: () => {}, // Default to a no-op function if not provided
-};
-
-// Define prop types
-ChatbotInterface.propTypes = {
-  selectedCategory: PropTypes.string.isRequired,
-  onRecommendations: PropTypes.func, // Should be a function if provided
 };
 
 export default ChatbotInterface;

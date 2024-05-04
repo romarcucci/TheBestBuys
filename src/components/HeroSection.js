@@ -1,6 +1,6 @@
 import React from 'react';
 import robotImage from '../assets/robot.jpeg';
-import '../styles/HeroSection.css';
+import '../styles/HeroSection.scss';
 
 const HeroSection = () => {
   return (
