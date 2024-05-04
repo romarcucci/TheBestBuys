@@ -1,0 +1,25 @@
+.recommendations {
+  padding: 20px;
+}
+
+.recommendations h3 {
+  margin: 0 0 10px 0;
+}
+
+.recommendations ul {
+  list-style: none;
+  padding: 0;
+}
+
+.recommendations li {
+  margin: 5px 0;
+}
+
+.recommendations a {
+  color: #008cba;
+  text-decoration: none;
+}
+
+.recommendations a:hover {
+  text-decoration: underline;
+}

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import '../styles/ProductRecommendations.css';
+
 const ProductRecommendations = ({ products, reset }) => {
   return (
     <div className="product-recommendations">
