@@ -1,59 +1,90 @@
-// Define reusable variables for common styles in the product grid
-$product-grid-width: 66.6667%; // Default width for the product grid
-$product-category-width: 20%; // Default width for each product category
-$product-padding: 20px; // Padding for product categories
-$product-margin: 10px; // Margin for product categories
-$product-transition: 0.3s; // Transition duration for hover effects
-$product-bg-color: #f2f2f2; // Background color for product categories
-$product-border-color: #ccc; // Border color for product categories
-$product-hover-bg: #e0e0e0; // Background color on hover
-$product-icon-size: 5em; // Default size for icons
-$product-icon-color: #4d4d4d; // Default color for icons
-$product-font-family: Arial, sans-serif; // Font family for category labels
+// Define common style variables
+$product-padding: 20px;
+$product-margin: 10px;
+$product-transition: 0.3s;
+$product-bg-color: #f2f2f2;
+$product-border-color: #ccc;
+$product-hover-bg: #e0e0e0;
+$product-icon-size: 5em;
+$product-icon-color: #4d4d4d;
+$product-font-family: Arial, sans-serif;
+
+// Define breakpoints for responsiveness
+$breakpoint-smartphone: 480px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+
+// Create mixins for grid width
+@mixin grid-width($width) {
+  width: $width;
+  margin: 0 auto;
+}
 
 // Style for the product grid container
 .product-grid {
-  display: flex; // Use flexbox for layout
-  flex-wrap: wrap; // Allow wrapping of elements
-  justify-content: center; // Center items horizontally
-  width: $product-grid-width; // Set the grid width
-  margin: 0 auto; // Center the grid within its parent
+  display: flex;
+  flex-wrap: wrap; // Allow wrapping of items
+  justify-content: center; // Center horizontally
+  gap: $product-margin; // Space between categories
+
+  // Default to desktop layout
+  @include grid-width(60%); // Grid is 60% of parent
+
+  @media (max-width: $breakpoint-tablet) {
+    @include grid-width(80%); // Grid is 80% on tablets
+  }
+
+  @media (max-width: $breakpoint-smartphone) {
+    @include grid-width(100%); // Grid is 100% on smartphones
+  }
 }
 
 // Style for individual product categories
 .product-category {
-  text-align: center; // Align text to the center
-  background-color: $product-bg-color; // Background color
-  border: 1px solid $product-border-color; // Border style
-  padding: $product-padding; // Padding around the category
-  margin: $product-margin; // Margin between categories
-  flex-basis: $product-category-width; // Set the width for each category
-  cursor: pointer; // Change cursor to indicate interactivity
-  transition: background-color $product-transition; // Smooth transition on hover
+  text-align: center;
+  background-color: $product-bg-color;
+  border: 1px solid $product-border-color;
+  padding: $product-padding;
+  transition: background-color $product-transition;
+  cursor: pointer; // Indicates interactivity
+
+  // Set fixed width to maintain consistent category size
+  width: 150px; // Default width for desktop
+  height: 150px; // Consistent height for desktop
 
   &:hover {
-    background-color: $product-hover-bg; // Change background color on hover
+    background-color: $product-hover-bg;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    width: 130px; // Adjusted width on tablets
+    height: 130px; // Consistent height for tablets
+  }
+
+  @media (max-width: $breakpoint-smartphone) {
+    width: 150px; // Adjusted width on smartphones
+    height: 120px; // Consistent height for smartphones
   }
 }
 
 // Style for the icon wrapper
 .icon-wrapper {
-  display: flex; // Use flexbox for centering
-  justify-content: center; // Center horizontally
-  align-items: center; // Center vertically
-  height: 100px; // Set a fixed height for the icon wrapper
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
 
   svg {
-    font-size: $product-icon-size; // Set the size of SVG icons
-    color: $product-icon-color; // Set the color of SVG icons
+    font-size: $product-icon-size;
+    color: $product-icon-color;
   }
 }
 
 // Style for the category label
 .category-label {
-  font-family: $product-font-family; // Set the font family
-  text-transform: uppercase; // Convert text to uppercase
-  color: $product-icon-color; // Set the text color
-  margin-top: 10px; // Add margin above the label
-  display: block; // Ensure the label is displayed as a block element
+  font-family: $product-font-family;
+  text-transform: uppercase;
+  color: $product-icon-color;
+  margin-top: 10px;
+  display: block;
 }
