@@ -3,35 +3,23 @@ import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import ProductGrid from './components/ProductGrid';
 import ChatbotInterface from './components/ChatbotInterface';
-import ProductRecommendations from './components/ProductRecommendations';
 
 const App = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [showChatbot, setShowChatbot] = useState(false);
-  const [productRecommendations, setProductRecommendations] = useState([]);
+
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category);
+  };
 
   return (
     <div className="app">
       <Header />
-      <HeroSection onChatbotInit={() => setShowChatbot(true)} />
-      {!showChatbot && !selectedCategory && (
-        <ProductGrid onCategorySelect={setSelectedCategory} />
+      <HeroSection />
+      {!selectedCategory && (
+        <ProductGrid onCategorySelect={handleCategorySelect} />
       )}
-      {showChatbot && (
-        <ChatbotInterface
-          selectedCategory={selectedCategory}
-          onRecommendations={setProductRecommendations}
-        />
-      )}
-      {productRecommendations.length > 0 && (
-        <ProductRecommendations
-          products={productRecommendations}
-          reset={() => {
-            setProductRecommendations([]);
-            setSelectedCategory(null);
-            setShowChatbot(false);
-          }}
-        />
+      {selectedCategory && (
+        <ChatbotInterface selectedCategory={selectedCategory} />
       )}
     </div>
   );
