@@ -18,6 +18,6 @@ const callGeminiApi = async (message) => {
 
 // Example usage
 (async () => {
-  const message = 'Quel temps fait-il aujourd\'hui à Paris ?';
+  const message = "Quel temps fait-il aujourd'hui à Paris ?";
   await callGeminiApi(message);
 })();
