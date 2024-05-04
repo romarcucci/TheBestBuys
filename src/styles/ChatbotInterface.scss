@@ -1,77 +1,94 @@
-// Define color variables to maintain consistency across styles
-$primary-color: #008cba; // Primary color for user messages and other elements
-$bot-bg-color: #4d4d4d; // Background color for bot messages
-$text-color: white; // Standard text color
-$border-radius: 15px; // Default border radius for rounded corners
+// Define color variables for consistency
+$primary-color: #008cba;
+$bot-bg-color: #4d4d4d;
+$text-color: white;
+$border-radius: 15px;
 
+// Define breakpoints for responsive design
+$breakpoint-smartphone: 480px; // Smartphones
+$breakpoint-tablet: 768px; // Tablets
+
+// Main container setup for the chatbot
 .chatbot-interface {
-  // Set up the main container for the chatbot
-  display: flex;
-  flex-direction: column;
-  height: 100vh; // Full viewport height
-  padding: 20px; // Padding around the chatbot interface
+  display: flex; // Flex layout for alignment and arrangement
+  flex-direction: column; // Layout is vertical
+  padding: 20px;
+  max-width: 60%; // Limit the width to 60%
+  margin: 0 auto; // Center the chatbot interface horizontally
 
-  .chat-log {
-    // Configure the area where chat messages are displayed
-    flex-grow: 1; // Allow this section to grow and fill available space
-    overflow-y: auto; // Enable vertical scrolling when messages overflow
-    border-bottom: 1px solid #ccc; // Add a bottom border
-    padding-bottom: 10px; // Padding at the bottom
-    margin-bottom: 10px; // Margin below the chat log
-    display: flex; // Use flexbox to arrange messages vertically
-    flex-direction: column; // Messages stack vertically
-
-    .chat-msg {
-      // Style for individual chat messages
-      padding: 10px; // Padding around the message content
-      border-radius: $border-radius; // Rounded corners
-      font-family: Arial, sans-serif; // Font style
-      margin-bottom: 10px; // Margin between messages
-      width: fit-content; // Adjust width to fit the content
-      animation: slide-in 0.3s forwards; // Animation for message entry
-
-      &.user {
-        // Styles for user messages
-        text-align: right; // Align text to the right
-        background-color: $primary-color; // Background color for user messages
-        color: $text-color; // Text color
-        align-self: flex-end; // Align messages to the right
-      }
-
-      &.bot {
-        // Styles for bot messages
-        text-align: left; // Align text to the left
-        background-color: $bot-bg-color; // Background color for bot messages
-        color: $text-color; // Text color
-        align-self: flex-start; // Align messages to the left
-      }
-    }
+  // Responsiveness for tablet and smartphone
+  @media (max-width: $breakpoint-tablet) {
+    max-width: 80%; // For tablet-sized devices
   }
 
-  @keyframes slide-in {
-    // Keyframes for the slide-in animation
-    from {
-      opacity: 0; // Start with invisible
-      transform: translateY(10px); // Start from below
+  @media (max-width: $breakpoint-smartphone) {
+    max-width: 100%; // For smartphones
+  }
+
+  .chat-log {
+    flex-grow: 1; // Allows this section to grow
+    overflow-y: auto; // Enable vertical scrolling when needed
+    border-bottom: 1px solid #ccc; // Bottom border
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    display: flex; // Use flexbox to arrange messages vertically
+    flex-direction: column; // Messages stack vertically
+  }
+
+  .chat-msg {
+    padding: 10px;
+    border-radius: $border-radius;
+    font-family: Arial, sans-serif;
+    margin-bottom: 10px;
+    width: fit-content; // Adjust to content
+    max-width: 75%; // Limit message width
+    animation: slide-in 0.3s forwards;
+
+    &.user {
+      text-align: left;
+      background-color: $primary-color;
+      color: $text-color;
+      align-self: flex-end;
+      animation: slide-in-from-right 0.3s forwards;
     }
-    to {
-      opacity: 1; // Become fully visible
-      transform: translateY(0); // Move to original position
+
+    &.bot {
+      text-align: left;
+      background-color: $bot-bg-color;
+      color: $text-color;
+      align-self: flex-start;
+      animation: slide-in-from-left 0.3s forwards;
     }
   }
 
   .input-container {
-    // Container for the message input and send button
-    display: flex; // Use flexbox to arrange elements
+    position: fixed; // Fix at the bottom
+    bottom: 0; // Align to the bottom of the screen
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background-color: white;
+    display: flex; // Use flexbox for alignment
+    justify-content: center; // Center the input text
+    border-top: 1px solid #ccc; // Border to separate from chat log
 
     .chat-input {
-      // Style for the text input area
       flex-grow: 1; // Allow the input to grow
       border-radius: 20px; // Rounded corners
       padding: 10px; // Padding around the text
-      border: 1px solid #ccc; // Border style
-      outline: none; // No outline when focused
-      scrollbar-width: none; // Hide the scrollbar
+      border: 1px solid #ccc;
+      outline: none;
+      scrollbar-width: none;
+      resize: none; // Hide the textarea expander
+      max-width: 60%; // Limit the width of the input
+
+      @media (max-width: $breakpoint-tablet) {
+        max-width: 80%; // Adjust to 80% on tablets
+      }
+
+      @media (max-width: $breakpoint-smartphone) {
+        max-width: 100%; // Adjust to 100% on smartphones
+      }
 
       &::-webkit-scrollbar {
         display: none; // Hide the scrollbar on WebKit browsers
@@ -79,20 +96,18 @@ $border-radius: 15px; // Default border radius for rounded corners
     }
 
     .send-button {
-      // Style for the send button
       padding: 10px; // Padding around the button
-      background-color: transparent; // Transparent background
-      color: $primary-color; // Text color
-      border: none; // No border
-      cursor: pointer; // Show cursor as a pointer
-      display: flex; // Use flexbox to center content
-      justify-content: center; // Center content horizontally
-      align-items: center; // Center content vertically
+      background-color: transparent;
+      color: $primary-color;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       &.disabled {
-        // Style for the disabled state of the button
-        color: lightgray; // Light gray color
-        cursor: not-allowed; // Cursor indicates that it's not clickable
+        color: lightgray;
+        cursor: not-allowed;
       }
     }
   }
