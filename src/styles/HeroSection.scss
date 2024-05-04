@@ -9,7 +9,21 @@ $hero-text-transform: uppercase; // Transform text to uppercase
 // Style for the hero section
 .hero-section {
   text-align: center; // Align text to the center
-  padding: $hero-padding; // Add padding to the section
+  padding: $hero-padding; // Padding around the section
+}
+
+// Style for the hero message
+.hero-message {
+  display: inline-block; // Display inline with other content
+  padding: 10px; // Padding around the message
+  background-color: $hero-bg-color; // Background color for the message
+  color: $hero-text-color; // Text color
+  border-radius: $hero-border-radius; // Rounded corners
+  text-align: center; // Align text to the center
+  cursor: default; // Default cursor (non-clickable)
+  margin-bottom: 10px; // Margin below the message
+  font-family: $hero-font-family; // Font for the text
+  text-transform: $hero-text-transform; // Convert text to uppercase
 }
 
 // Style for the hero image
@@ -17,18 +31,5 @@ $hero-text-transform: uppercase; // Transform text to uppercase
   display: block; // Display as a block element
   margin: 0 auto; // Center horizontally
   width: 100px; // Set a fixed width for the image
-}
-
-// Style for the hero message
-.hero-message {
-  display: inline-block; // Display inline with other content
-  padding: 10px; // Padding around the message
-  background-color: $hero-bg-color; // Background color
-  color: $hero-text-color; // Text color
-  border-radius: $hero-border-radius; // Rounded corners
-  text-align: center; // Align text to the center
-  cursor: default; // Default cursor (non-clickable)
-  margin-top: 10px; // Margin at the top
-  font-family: $hero-font-family; // Font for the text
-  text-transform: $hero-text-transform; // Convert text to uppercase
+  margin-top: 10px; // Margin at the top for spacing between message and image
 }
