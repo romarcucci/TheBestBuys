@@ -46,6 +46,7 @@
   },
   "devDependencies": {
     "globals": "^15.1.0",
-    "prettier": "^3.2.5"
+    "prettier": "^3.2.5",
+    "sass": "^1.76.0"
   }
 }

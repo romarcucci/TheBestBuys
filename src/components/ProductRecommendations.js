@@ -1,20 +1,21 @@
 import React from 'react';
-
-import '../styles/ProductRecommendations.css';
+import { FaAmazon } from 'react-icons/fa'; // Using an icon for Amazon
+import '../styles/ProductRecommendations.scss';
 
 const ProductRecommendations = ({ products, reset }) => {
   return (
     <div className="product-recommendations">
       <h2>Recommended Products:</h2>
-      <ul>
+      <div className="product-list">
         {products.map((product, index) => (
-          <li key={index}>
+          <div key={index} className="product-tile">
             <a href={product.link} target="_blank" rel="noopener noreferrer">
-              {product.name}
+              <FaAmazon /> {/* Amazon icon */}
+              <span>{product.name}</span> {/* Product name */}
             </a>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
       <button onClick={reset}>Start Over</button>
     </div>
   );

@@ -13,7 +13,7 @@ import {
   FaDesktop,
   FaGamepad,
 } from 'react-icons/fa';
-import '../styles/ProductGrid.css';
+import '../styles/ProductGrid.scss';
 
 const ProductGrid = ({ onCategorySelect }) => {
   const categories = [

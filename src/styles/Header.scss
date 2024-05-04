@@ -1,0 +1,24 @@
+// SCSS variables for commonly used styles
+$header-bg-color: #f0f0f0; // Background color for the header
+$header-padding: 10px; // Padding for the header
+$logo-font-size: 1.5em; // Font size for the logo
+$logo-font-weight: bold; // Font weight for the logo text
+$logo-font-family: Arial, sans-serif; // Font family for the logo
+$logo-text-transform: uppercase; // Text transformation for the logo
+
+.header {
+  // Styling for the header section
+  display: flex; // Use flexbox layout
+  justify-content: center; // Center content horizontally
+  align-items: center; // Center content vertically
+  padding: $header-padding; // Padding around the header
+  background-color: $header-bg-color; // Background color for the header
+}
+
+.logo {
+  // Styling for the logo inside the header
+  font-size: $logo-font-size; // Set the font size
+  font-weight: $logo-font-weight; // Set the font weight
+  font-family: $logo-font-family; // Set the font family
+  text-transform: $logo-text-transform; // Make the text uppercase
+}
