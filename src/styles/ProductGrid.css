@@ -1,0 +1,42 @@
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 66.6667%;
+  margin: 0 auto;
+}
+
+.product-category {
+  text-align: center;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 10px;
+  flex-basis: 20%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.product-category:hover {
+  background-color: #e0e0e0;
+}
+
+.icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.icon-wrapper svg {
+  font-size: 5em;
+  color: #4d4d4d;
+}
+
+.category-label {
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+  color: #4d4d4d;
+  margin-top: 10px;
+  display: block;
+}
