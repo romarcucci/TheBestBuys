@@ -1,18 +1,10 @@
 import React from 'react';
+import '../styles/Header.css';
 
 const Header = () => {
   return (
     <header className="header">
-      <div className="logo">TheBestBuys</div>
-      <input type="text" placeholder="Search for products..." className="search-bar" />
-      <nav className="category-nav">
-        <ul>
-          <li>Smartphones</li>
-          <li>Televisions</li>
-          <li>Écouteurs</li>
-          <li>Enceintes</li>
-        </ul>
-      </nav>
+      <div className="logo">The Best Buys</div>
     </header>
   );
 };
