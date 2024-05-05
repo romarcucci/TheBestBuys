@@ -1,109 +1,164 @@
 // Define color variables for consistency
-$primary-color: #008cba;
-$bot-bg-color: #4d4d4d;
+$primary-color: #673ab7;
+$bot-bg-color: #607d8b;
+$chatinterface-bg-color: #212121;
 $text-color: white;
 $border-radius: 15px;
 
 // Define breakpoints for responsive design
-$breakpoint-smartphone: 480px; // Smartphones
-$breakpoint-tablet: 768px; // Tablets
+$breakpoint-smartphone: 480px;
+$breakpoint-tablet: 768px;
+
+// Keyframe animations for slide-in effects
+@keyframes slide-in-from-bottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-from-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 
 // Main container setup for the chatbot
 .chatbot-interface {
-  display: flex; // Flex layout for alignment and arrangement
-  flex-direction: column; // Layout is vertical
+  background-color: $chatinterface-bg-color;
+  display: flex;
+  flex-direction: column;
   padding: 20px;
-  max-width: 60%; // Limit the width to 60%
-  margin: 0 auto; // Center the chatbot interface horizontally
+  max-width: 60%;
+  margin: 0 auto;
 
-  // Responsiveness for tablet and smartphone
   @media (max-width: $breakpoint-tablet) {
-    max-width: 80%; // For tablet-sized devices
+    max-width: 80%;
   }
 
   @media (max-width: $breakpoint-smartphone) {
-    max-width: 100%; // For smartphones
+    max-width: 100%;
   }
 
   .chat-log {
-    flex-grow: 1; // Allows this section to grow
-    overflow-y: auto; // Enable vertical scrolling when needed
-    border-bottom: 1px solid #ccc; // Bottom border
+    flex-grow: 1;
+    overflow-y: auto;
+    border-bottom: 1px solid #ccc;
     padding-bottom: 10px;
     margin-bottom: 10px;
-    display: flex; // Use flexbox to arrange messages vertically
-    flex-direction: column; // Messages stack vertically
+    display: flex;
+    flex-direction: column;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
   }
 
   .chat-msg {
+    display: flex; // Flex layout
+    align-items: flex-end; // Align profile picture to the bottom
     padding: 10px;
     border-radius: $border-radius;
     font-family: Arial, sans-serif;
     margin-bottom: 10px;
-    width: fit-content; // Adjust to content
-    max-width: 75%; // Limit message width
-    animation: slide-in 0.3s forwards;
+    width: fit-content;
+    max-width: 75%;
+    transition: all 0.3s ease-in-out;
 
     &.user {
-      text-align: left;
       background-color: $primary-color;
       color: $text-color;
+      text-align: left; // Ensure text is aligned left
       align-self: flex-end;
-      animation: slide-in-from-right 0.3s forwards;
+      animation: slide-in-from-bottom 0.3s forwards;
     }
 
     &.bot {
-      text-align: left;
-      background-color: $bot-bg-color;
-      color: $text-color;
+      flex-direction: row; // Profile picture on the left
       align-self: flex-start;
       animation: slide-in-from-left 0.3s forwards;
+
+      .profile-picture {
+        border-radius: 50%; // Circular profile picture
+        width: 30px;
+        height: 30px;
+        margin-right: 10px; // Space between profile picture and message content
+      }
+
+      .message-content {
+        background-color: $bot-bg-color;
+        color: $text-color;
+        padding: 10px;
+        border-radius: $border-radius;
+        font-family: Arial, sans-serif;
+      }
+
+      .spinner {
+        display: flex;
+        justify-content: center; // Center the spinner
+        align-items: center; // Center in the middle of the spinner box
+      }
     }
   }
 
   .input-container {
-    position: fixed; // Fix at the bottom
-    bottom: 0; // Align to the bottom of the screen
+    position: fixed;
+    bottom: 0;
     left: 0;
     right: 0;
     padding: 10px;
     background-color: white;
-    display: flex; // Use flexbox for alignment
-    justify-content: center; // Center the input text
-    border-top: 1px solid #ccc; // Border to separate from chat log
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #ccc;
 
     .chat-input {
-      flex-grow: 1; // Allow the input to grow
-      border-radius: 20px; // Rounded corners
-      padding: 10px; // Padding around the text
+      flex-grow: 1;
+      border-radius: 20px;
+      padding: 10px;
       border: 1px solid #ccc;
       outline: none;
-      scrollbar-width: none;
-      resize: none; // Hide the textarea expander
-      max-width: 60%; // Limit the width of the input
+      resize: none;
+
+      max-width: 60%; // Default maximum width
 
       @media (max-width: $breakpoint-tablet) {
-        max-width: 80%; // Adjust to 80% on tablets
+        max-width: 80%;
       }
 
       @media (max-width: $breakpoint-smartphone) {
-        max-width: 100%; // Adjust to 100% on smartphones
+        max-width: 100%;
       }
 
       &::-webkit-scrollbar {
-        display: none; // Hide the scrollbar on WebKit browsers
+        display: none; // Hide scrollbar on WebKit-based browsers
       }
     }
 
     .send-button {
-      padding: 10px; // Padding around the button
+      padding: 10px;
       background-color: transparent;
       color: $primary-color;
       border: none;
       cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
 
       &.disabled {
         color: lightgray;
