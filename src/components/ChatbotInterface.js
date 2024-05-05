@@ -1,14 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import BotMessage from './BotMessage';
 import { FaPaperPlane } from 'react-icons/fa';
 import '../styles/ChatbotInterface.scss';
 
-const ChatbotInterface = ({ selectedCategory, onRecommendations }) => {
+const ChatbotInterface = ({ selectedCategory }) => {
   const [chatLog, setChatLog] = useState([]);
   const [currentInput, setCurrentInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const chatLogRef = useRef(null);
+  const chatLogRef = useRef(null); // Reference to the chat log container
+
+  useEffect(() => {
+    if (chatLogRef.current) {
+      chatLogRef.current.scrollTop = chatLogRef.current.scrollHeight; // Auto-scroll to the bottom
+    }
+  }, [chatLog]); // Triggered when chatLog changes
 
   useEffect(() => {
     if (selectedCategory) {
@@ -19,32 +26,44 @@ const ChatbotInterface = ({ selectedCategory, onRecommendations }) => {
 
   const sendMessage = async () => {
     if (currentInput.trim() === '') {
-      return; // Exit if the input is empty
+      return; // Don't send empty messages
     }
 
-    setIsLoading(true);
+    setIsLoading(true); // Indicate loading state
 
-    setChatLog((prev) => [...prev, { type: 'user', content: currentInput }]);
+    setChatLog((prev) => [...prev, { type: 'user', content: currentInput }]); // Add user message
+
+    setChatLog((prev) => [...prev, { type: 'loading', content: '' }]); // Add loading spinner
+
     const userMessage = currentInput;
-    setCurrentInput('');
+    setCurrentInput(''); // Clear the input field
 
     try {
       const response = await axios.post('http://localhost:3000/chat', {
         message: userMessage,
       });
 
+      setChatLog((prev) => prev.filter((msg) => msg.type !== 'loading')); // Remove loading spinner
+
       if (
         response.data &&
         response.data.message &&
         typeof response.data.message.content === 'string'
       ) {
+        // const recommendations = response.data.productRecommendations || [];
         setChatLog((prev) => [
           ...prev,
-          { type: 'bot', content: response.data.message.content },
-        ]);
+          {
+            type: 'bot',
+            content: response.data.message.content,
+            // recommendations: recommendations,
+            recommendations: [
+              '<a class="affiliated-link" href="https://amzn.eu/d/8gqaqCV"><div class="image-affiliated-link"><img alt="Apple iPhone 15 (128 Go) - Noir" src="https://m.media-amazon.com/images/I/61eEYLATF9L._AC_SY110_.jpg" /></div><span class="test-affiliated-link">Apple iPhone 15 (128 Go) - Noir</span></a>',
 
-        const recommendations = response.data.productRecommendations || [];
-        onRecommendations(recommendations); // Pass recommendations to parent
+              '<a class="affiliated-link" href="https://amzn.eu/d/8gqaqCV"><div class="image-affiliated-link"><img alt="Apple iPhone 15 (128 Go) - Noir" src="https://m.media-amazon.com/images/I/61eEYLATF9L._AC_SY110_.jpg" /></div><span class="test-affiliated-link">Apple iPhone 15 (128 Go) - Noir</span></a>',
+            ],
+          },
+        ]); // Add bot response
       } else {
         throw new Error('Invalid response structure');
       }
@@ -52,7 +71,6 @@ const ChatbotInterface = ({ selectedCategory, onRecommendations }) => {
       console.error('Error sending message:', error);
 
       setChatLog((prev) => [
-        ...prev,
         {
           type: 'bot',
           content:
@@ -60,25 +78,34 @@ const ChatbotInterface = ({ selectedCategory, onRecommendations }) => {
         },
       ]);
     } finally {
-      setIsLoading(false);
+      setIsLoading(false); // Allow interaction again
     }
   };
-
-  useEffect(() => {
-    if (chatLogRef.current) {
-      chatLogRef.current.scrollTop = chatLogRef.current.scrollHeight;
-    }
-  }, [chatLog]);
-
   return (
     <div className="chatbot-interface">
       <div className="chat-log" ref={chatLogRef}>
-        {chatLog.map((msg, index) => (
-          <div key={index} className={`chat-msg ${msg.type}`}>
-            {msg.content}
-          </div>
-        ))}
+        {chatLog.map((msg, index) => {
+          if (msg.type === 'bot') {
+            return (
+              <BotMessage
+                key={index}
+                className={`chat-msg ${msg.type}`}
+                content={msg.content}
+                recommendations={msg.recommendations}
+              />
+            );
+          }
+
+          return (
+            <div key={index} className={`chat-msg ${msg.type}`}>
+              {msg.type === 'user' && (
+                <div className="message-content">{msg.content}</div>
+              )}
+            </div>
+          );
+        })}
       </div>
+
       <div className="input-container">
         <textarea
           rows="1"
@@ -86,8 +113,8 @@ const ChatbotInterface = ({ selectedCategory, onRecommendations }) => {
           onChange={(e) => setCurrentInput(e.target.value)}
           onKeyPress={(e) => {
             if (e.key === 'Enter' && !e.shiftKey && !isLoading) {
-              sendMessage();
-              e.preventDefault();
+              sendMessage(); // Send message when Enter is pressed
+              e.preventDefault(); // Prevent new lines
             }
           }}
           className="chat-input"
