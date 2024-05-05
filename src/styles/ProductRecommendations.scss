@@ -10,20 +10,22 @@ $product-transition: 0.3s; // Transition time for animations
 $product-link-color: #000; // Color for links
 $product-span-font-size: 1rem; // Font size for product names
 
-// Style for the product recommendations section
 .product-recommendations {
+  text-align: center; // Center the section content
+  margin-bottom: 30px; // Add spacing between chatbot and links
+
   h2 {
     font-size: $product-recommendations-font-size; // Set font size for the title
+    text-align: center; // Center the title
   }
 
-  // Style for the list containing product tiles
   .product-list {
     display: flex; // Use flexbox for layout
     flex-wrap: wrap; // Allow wrapping of tiles
     gap: $product-tile-gap; // Space between tiles
+    justify-content: center; // Center the product tiles
   }
 
-  // Style for individual product tiles
   .product-tile {
     padding: $product-tile-padding; // Padding around each tile
     border: 1px solid $product-border-color; // Border color
@@ -39,8 +41,9 @@ $product-span-font-size: 1rem; // Font size for product names
       text-decoration: none; // Remove underline from links
       color: $product-link-color; // Set link color
       display: flex; // Use flexbox to align content
+      flex-direction: column; // Align content vertically
+      justify-content: center; // Center the content
       align-items: center; // Center content vertically
-      gap: 5px; // Space between icon and text
     }
 
     span {

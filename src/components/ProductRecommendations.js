@@ -1,22 +1,32 @@
 import React from 'react';
-import { FaAmazon } from 'react-icons/fa'; // Using an icon for Amazon
 import '../styles/ProductRecommendations.scss';
 
-const ProductRecommendations = ({ products, reset }) => {
+const ProductRecommendations = ({ isLoading, products }) => {
   return (
     <div className="product-recommendations">
       <h2>Recommended Products:</h2>
       <div className="product-list">
-        {products.map((product, index) => (
-          <div key={index} className="product-tile">
-            <a href={product.link} target="_blank" rel="noopener noreferrer">
-              <FaAmazon /> {/* Amazon icon */}
-              <span>{product.name}</span> {/* Product name */}
-            </a>
+        {isLoading ? (
+          <div className="flex justify-center items-center h-24">
+            {/* Tailwind CSS spinner */}
+            <div className="animate-spin h-8 w-8 border-4 border-t-transparent rounded-full border-gray-500"></div>
           </div>
-        ))}
+        ) : (
+          products.length > 0 &&
+          products.map((product, index) => (
+            <div key={index} className="product-tile">
+              <a href={product.link} target="_blank" rel="noopener noreferrer">
+                <img
+                  src={product.imageSrc}
+                  alt={product.title}
+                  style={{ width: '150px', height: '150px' }}
+                />
+                <span>{product.title}</span>
+              </a>
+            </div>
+          ))
+        )}
       </div>
-      <button onClick={reset}>Start Over</button>
     </div>
   );
 };
