@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import BotMessage from './BotMessage';
 import { FaPaperPlane } from 'react-icons/fa';
 import '../styles/ChatbotInterface.scss';
-import robotAvatar from '../assets/robot_profile_picture.png'; // Import the robot profile picture
 
-const ChatbotInterface = ({ selectedCategory, onRecommendations }) => {
+const ChatbotInterface = ({ selectedCategory }) => {
   const [chatLog, setChatLog] = useState([]);
   const [currentInput, setCurrentInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -50,13 +50,20 @@ const ChatbotInterface = ({ selectedCategory, onRecommendations }) => {
         response.data.message &&
         typeof response.data.message.content === 'string'
       ) {
+        // const recommendations = response.data.productRecommendations || [];
         setChatLog((prev) => [
           ...prev,
-          { type: 'bot', content: response.data.message.content },
-        ]); // Add bot response
+          {
+            type: 'bot',
+            content: response.data.message.content,
+            // recommendations: recommendations,
+            recommendations: [
+              '<a class="affiliated-link" href="https://amzn.eu/d/8gqaqCV"><div class="image-affiliated-link"><img alt="Apple iPhone 15 (128 Go) - Noir" src="https://m.media-amazon.com/images/I/61eEYLATF9L._AC_SY110_.jpg" /></div><span class="test-affiliated-link">Apple iPhone 15 (128 Go) - Noir</span></a>',
 
-        const recommendations = response.data.productRecommendations || [];
-        onRecommendations(recommendations); // Pass recommendations to parent
+              '<a class="affiliated-link" href="https://amzn.eu/d/8gqaqCV"><div class="image-affiliated-link"><img alt="Apple iPhone 15 (128 Go) - Noir" src="https://m.media-amazon.com/images/I/61eEYLATF9L._AC_SY110_.jpg" /></div><span class="test-affiliated-link">Apple iPhone 15 (128 Go) - Noir</span></a>',
+            ],
+          },
+        ]); // Add bot response
       } else {
         throw new Error('Invalid response structure');
       }
@@ -74,26 +81,31 @@ const ChatbotInterface = ({ selectedCategory, onRecommendations }) => {
       setIsLoading(false); // Allow interaction again
     }
   };
-
   return (
     <div className="chatbot-interface">
       <div className="chat-log" ref={chatLogRef}>
-        {chatLog.map((msg, index) => (
-          <div key={index} className={`chat-msg ${msg.type}`}>
-            {msg.type === 'user' && (
-              <div className="message-content">
-                {msg.content} {/* Display user message */}
-              </div>
-            )}
-            {msg.type === 'bot' && (
-              <>
-                <img src={robotAvatar} alt="Bot" className="profile-picture" />
+        {chatLog.map((msg, index) => {
+          if (msg.type === 'bot') {
+            return (
+              <BotMessage
+                key={index}
+                className={`chat-msg ${msg.type}`}
+                content={msg.content}
+                recommendations={msg.recommendations}
+              />
+            );
+          }
+
+          return (
+            <div key={index} className={`chat-msg ${msg.type}`}>
+              {msg.type === 'user' && (
                 <div className="message-content">{msg.content}</div>
-              </>
-            )}
-          </div>
-        ))}
+              )}
+            </div>
+          );
+        })}
       </div>
+
       <div className="input-container">
         <textarea
           rows="1"
