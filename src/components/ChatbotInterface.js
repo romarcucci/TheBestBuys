@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { FaPaperPlane } from 'react-icons/fa';
-import Box from '@mui/material/Box';
-import CircularProgress from '@mui/material/CircularProgress';
 import '../styles/ChatbotInterface.scss';
 import robotAvatar from '../assets/robot_profile_picture.png'; // Import the robot profile picture
 
@@ -33,15 +31,9 @@ const ChatbotInterface = ({ selectedCategory, onRecommendations }) => {
 
     setIsLoading(true); // Indicate loading state
 
-    setChatLog((prev) => [
-      ...prev,
-      { type: 'user', content: currentInput },
-    ]); // Add user message
+    setChatLog((prev) => [...prev, { type: 'user', content: currentInput }]); // Add user message
 
-    setChatLog((prev) => [
-      ...prev,
-      { type: 'loading', content: '' },
-    ]); // Add loading spinner
+    setChatLog((prev) => [...prev, { type: 'loading', content: '' }]); // Add loading spinner
 
     const userMessage = currentInput;
     setCurrentInput(''); // Clear the input field
@@ -74,7 +66,8 @@ const ChatbotInterface = ({ selectedCategory, onRecommendations }) => {
       setChatLog((prev) => [
         {
           type: 'bot',
-          content: 'Sorry, there was an error processing your request. Please try again later.',
+          content:
+            'Sorry, there was an error processing your request. Please try again later.',
         },
       ]);
     } finally {
@@ -94,20 +87,9 @@ const ChatbotInterface = ({ selectedCategory, onRecommendations }) => {
             )}
             {msg.type === 'bot' && (
               <>
-                <img
-                  src={robotAvatar}
-                  alt="Bot"
-                  className="profile-picture"
-                />
-                <div className="message-content">
-                  {msg.content}
-                </div>
+                <img src={robotAvatar} alt="Bot" className="profile-picture" />
+                <div className="message-content">{msg.content}</div>
               </>
-            )}
-            {msg.type === 'loading' && (
-              <Box className="spinner">
-                <CircularProgress sx={{ color: '#607d8b' }} /> {/* Material UI spinner */}
-              </Box>
             )}
           </div>
         ))}
