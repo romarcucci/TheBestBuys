@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-function generateProjectTreeView(directory, level = 0) {
+function exportProjectTreeView(directory, level = 0) {
   const files = fs.readdirSync(directory);
   let result = '';
 
@@ -24,7 +24,7 @@ function generateProjectTreeView(directory, level = 0) {
 
     if (stat.isDirectory()) {
       // Recursively generate the tree for subdirectories
-      result += generateProjectTreeView(filePath, level + 1);
+      result += exportProjectTreeView(filePath, level + 1);
     }
   });
 
@@ -32,7 +32,7 @@ function generateProjectTreeView(directory, level = 0) {
 }
 
 const rootDir = '.'; // Change this to your project directory
-const treeStructure = generateProjectTreeView(rootDir);
+const treeStructure = exportProjectTreeView(rootDir);
 
 fs.writeFileSync('project_structure.txt', treeStructure);
 console.log('Project structure exported to project_structure.txt');
