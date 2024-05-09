@@ -14,6 +14,7 @@ const ChatbotInterface = ({ selectedCategory }) => {
 
   useEffect(() => {
     if (chatLogRef.current) {
+      chatLogRef.current.style.scrollBehavior = 'smooth';
       chatLogRef.current.scrollTop = chatLogRef.current.scrollHeight; // Auto-scroll to the bottom
     }
   }, [chatLog]); // Triggered when chatLog changes

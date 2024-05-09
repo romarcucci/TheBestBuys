@@ -26,9 +26,10 @@ $breakpoint-tablet: 768px; // Width for tablet responsiveness
   background-color: $chatinterface-bg-color; // Set background color
   display: flex; // Use Flexbox layout
   flex-direction: column; // Stack items vertically
-  padding: 20px; // General padding around the container
+  // padding: 20px; // General padding around the container
   max-width: 60%; // Restrict max width to 60%
   margin: 0 auto; // Center horizontally
+  height: 50vh;
 
   // Adjust layout based on device size
   @media (max-width: $breakpoint-tablet) {
@@ -41,27 +42,19 @@ $breakpoint-tablet: 768px; // Width for tablet responsiveness
 
   // Styling for the chat log area (where messages appear)
   .chat-log {
+    overflow: auto;
+    scrollbar-width: none; // Hides the scrollbar in Firefox
+    scroll-behavior: smooth; // Enable smooth scroll behavior
+    -webkit-overflow-scrolling: touch; // Ensures smooth scrolling on iOS devices
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    padding: 20px;
     flex-grow: 1; // Allow the chat log to grow with content
     overflow-y: auto; // Enable vertical scrolling
     border-bottom: 1px solid #ccc; // Add a border at the bottom
-    padding-bottom: 10px; // Padding at the bottom
-    margin-bottom: 10px; // Margin at the bottom
     display: flex; // Use Flexbox
     flex-direction: column; // Stack messages vertically
-
-    // Custom scrollbar styling
-    &::-webkit-scrollbar {
-      width: 8px; // Narrow scrollbar
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: #ccc; // Light gray scrollbar thumb
-      border-radius: 4px; // Rounded corners for thumb
-    }
-
-    &::-webkit-scrollbar-track {
-      background: transparent; // Transparent scrollbar track
-    }
   }
 
   // Styling for individual chat messages
@@ -87,15 +80,11 @@ $breakpoint-tablet: 768px; // Width for tablet responsiveness
 
   // Styling for the input container at the bottom of the chat
   .input-container {
-    position: fixed; // Keep it fixed at the bottom
-    bottom: 0;
     left: 0;
     right: 0;
-    padding: 10px; // Padding around the container
-    background-color: #fff; // White background for input area
+    padding: 15px; // Padding around the container
     display: flex;
     justify-content: center;
-    border-top: 1px solid #ccc; // Border at the top
 
     // Input styling for the chat text area
     .chat-input {
@@ -105,17 +94,6 @@ $breakpoint-tablet: 768px; // Width for tablet responsiveness
       border: 1px solid #ccc; // Border around the input
       outline: none; // No default outline
       resize: none; // Disable resizing
-
-      // Responsiveness for different devices
-      max-width: 60%; // Default width
-
-      @media (max-width: $breakpoint-tablet) {
-        max-width: 80%; // Adjust for tablets
-      }
-
-      @media (max-width: $breakpoint-smartphone) {
-        max-width: 100%; // Full width on smartphones
-      }
 
       &::-webkit-scrollbar {
         display: none; // Hide scrollbar on WebKit-based browsers
