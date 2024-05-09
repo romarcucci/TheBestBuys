@@ -1,23 +1,23 @@
-// SCSS variables for commonly used styles
-$header-bg-color: #f0f0f0; // Background color for the header
-$header-padding: 0px; // Padding for the header
-$logo-font-size: 1.5em; // Font size for the logo
-$logo-font-weight: bold; // Font weight for the logo text
-$logo-text-transform: uppercase; // Text transformation for the logo
+$header-bg-color: #f0f0f0; // Light gray background color for the header
+$header-padding: 0; // No padding for the header
+$header-height: 10vh; // Fixed height for the header (10% of viewport height)
+$logo-font-size: 1.5em; // Size of the logo font
+$logo-font-weight: bold; // Bold font for the logo
+$logo-text-transform: uppercase; // Uppercase text for the logo
 
+// Styling for the header section
 .header {
-  // Styling for the header section
-  display: flex; // Use flexbox layout
-  justify-content: center; // Center content horizontally
-  align-items: center; // Center content vertically
-  padding: $header-padding; // Padding around the header
-  background-color: $header-bg-color; // Background color for the header
-  height: 10vh;
+  display: flex; // Use Flexbox for layout
+  justify-content: center; // Center elements horizontally
+  align-items: center; // Center elements vertically
+  padding: $header-padding; // Use defined padding for consistency
+  background-color: $header-bg-color; // Use predefined background color
+  height: $header-height; // Use defined header height
 }
 
+// Styling for the logo element within the header
 .logo {
-  // Styling for the logo inside the header
-  font-size: $logo-font-size; // Set the font size
-  font-weight: $logo-font-weight; // Set the font weight
-  text-transform: $logo-text-transform; // Make the text uppercase
+  font-size: $logo-font-size; // Use predefined font size
+  font-weight: $logo-font-weight; // Apply defined font weight
+  text-transform: $logo-text-transform; // Ensure text is uppercase
 }

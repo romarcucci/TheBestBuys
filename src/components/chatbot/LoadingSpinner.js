@@ -1,7 +1,9 @@
 import React from 'react';
-import '../../styles/chatbot/LoadingSpinner.scss'; // Import the associated styles
 
-const LoadingWave = () => {
+// Styles
+import '../../styles/chatbot/LoadingSpinner.scss';
+
+const LoadingSpinner = () => {
   return (
     <div className="loading-spinner">
       <div className="dot"></div>
@@ -11,4 +13,4 @@ const LoadingWave = () => {
   );
 };
 
-export default LoadingWave;
+export default LoadingSpinner;

@@ -1,89 +1,89 @@
-// Define common style variables
-$product-padding: 20px;
-$product-margin: 10px;
-$product-transition: 0.3s;
-$product-bg-color: #f2f2f2;
-$product-border-color: #ccc;
-$product-hover-bg: #e0e0e0;
-$product-icon-size: 5em;
-$product-icon-color: #4d4d4d;
+// Common style variables for product-related components
+$product-padding: 20px; /* Padding for individual product categories */
+$product-margin: 10px; /* Margin between product items in the grid */
+$product-transition: 0.3s; /* Transition duration for hover effects */
+$product-bg-color: #f2f2f2; /* Default background color for product categories */
+$product-border-color: #ccc; /* Default border color for product categories */
+$product-hover-bg: #e0e0e0; /* Background color for hover effect */
+$product-icon-size: 5em; /* Default size for icons in product categories */
+$product-icon-color: #4d4d4d; /* Default color for icons and text */
 
-// Define breakpoints for responsiveness
-$breakpoint-smartphone: 480px;
-$breakpoint-tablet: 768px;
-$breakpoint-desktop: 1024px;
+// Breakpoints for responsive design
+$breakpoint-smartphone: 480px; /* Max width for smartphone layout */
+$breakpoint-tablet: 768px; /* Max width for tablet layout */
+$breakpoint-desktop: 1024px; /* Max width for desktop layout */
 
-// Create mixins for grid width
+// Mixin to set grid width and center it
 @mixin grid-width($width) {
-  width: $width;
-  margin: 0 auto;
+  width: $width; /* Set the width */
+  margin: 0 auto; /* Center horizontally */
 }
 
-// Style for the product grid container
+// Styles for the product grid container
 .product-grid {
-  display: flex;
-  flex-wrap: wrap; // Allow wrapping of items
-  justify-content: center; // Center horizontally
-  gap: $product-margin; // Space between categories
-  height: 40vh;
+  display: flex; /* Use Flexbox for flexible layout */
+  flex-wrap: wrap; /* Allow items to wrap to the next row */
+  justify-content: center; /* Center horizontally */
+  gap: $product-margin; /* Set spacing between grid items */
 
-  // Default to desktop layout
-  @include grid-width(60%); // Grid is 60% of parent
+  @include grid-width(60%); /* Default grid width for desktop layouts */
 
+  /* Adjust grid width for smaller screens */
   @media (max-width: $breakpoint-tablet) {
-    @include grid-width(80%); // Grid is 80% on tablets
+    @include grid-width(80%); /* Increase width for tablet layout */
   }
 
   @media (max-width: $breakpoint-smartphone) {
-    @include grid-width(100%); // Grid is 100% on smartphones
+    @include grid-width(100%); /* Full width on smartphones */
   }
 }
 
-// Style for individual product categories
+// Styles for individual product categories
 .product-category {
-  text-align: center;
-  background-color: $product-bg-color;
-  border: 1px solid $product-border-color;
-  padding: $product-padding;
-  transition: background-color $product-transition;
-  cursor: pointer; // Indicates interactivity
+  text-align: center; /* Center-align text */
+  background-color: $product-bg-color; /* Default background color */
+  border: 1px solid $product-border-color; /* Border style */
+  padding: $product-padding; /* Padding for the category */
+  transition: background-color $product-transition; /* Transition for hover effect */
+  cursor: pointer; /* Indicate interactivity with pointer cursor */
 
-  // Set fixed width to maintain consistent category size
-  width: 150px; // Default width for desktop
-  height: 150px; // Consistent height for desktop
+  /* Fixed width and height for consistent size */
+  width: 150px;
+  height: 150px;
 
   &:hover {
-    background-color: $product-hover-bg;
+    background-color: $product-hover-bg; /* Change background color on hover */
   }
 
+  /* Adjust size for smaller screens */
   @media (max-width: $breakpoint-tablet) {
-    width: 130px; // Adjusted width on tablets
-    height: 130px; // Consistent height for tablets
+    width: 130px;
+    height: 130px;
   }
 
   @media (max-width: $breakpoint-smartphone) {
-    width: 130px; // Adjusted width on smartphones
-    height: 120px; // Consistent height for smartphones
+    width: 130px;
+    height: 120px;
   }
 }
 
-// Style for the icon wrapper
+// Styles for the icon wrapper within product categories
 .icon-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
+  display: flex; /* Use Flexbox for centering */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100px; /* Fixed height for the wrapper */
 
   svg {
-    font-size: $product-icon-size;
-    color: $product-icon-color;
+    font-size: $product-icon-size; /* Size of the icon */
+    color: $product-icon-color; /* Color for the icon */
   }
 }
 
-// Style for the category label
+// Styles for the category label in product categories
 .category-label {
-  text-transform: uppercase;
-  color: $product-icon-color;
-  margin-top: 10px;
-  display: block;
+  text-transform: uppercase; /* Uppercase text */
+  color: $product-icon-color; /* Use icon color for text */
+  margin-top: 10px; /* Margin above the label */
+  display: block; /* Ensure the label is displayed as a block */
 }

@@ -1,35 +1,36 @@
-// Define common style variables
-$hero-padding: 20px; // Padding for the hero section
-$hero-bg-color: #008cba; // Background color for the hero message
-$hero-text-color: white; // Text color for the hero message
-$hero-border-radius: 5px; // Border radius for rounded corners
-$hero-text-transform: uppercase; // Transform text to uppercase
+// Define common style variables for the hero section
+$hero-section-height: 40vh; /* Total height for the hero section */
+$hero-section-padding: 5vh; /* Padding for the whole hero section */
+$hero-padding: 20px; /* Default padding for elements within the hero section */
+$hero-bg-color: #008cba; /* Background color for the hero message */
+$hero-text-color: white; /* Text color for the hero message */
+$hero-border-radius: 5px; /* Border radius for rounded corners */
+$hero-text-transform: uppercase; /* Transform text to uppercase */
 
-// Style for the hero section
+// Main styling for the hero section
 .hero-section {
-  height: 40vh;
-  padding: 5vh;
-  text-align: center; // Align text to the center
-  padding: $hero-padding; // Padding around the section
+  height: $hero-section-height; /* Set the height of the hero section */
+  padding: $hero-section-padding; /* Set padding around the hero section */
+  text-align: center; /* Center the text horizontally */
 
-  // Style for the hero message
+  /* Styling for the hero message box */
   .hero-message {
-    display: inline-block; // Display inline with other content
-    padding: 10px; // Padding around the message
-    background-color: $hero-bg-color; // Background color for the message
-    color: $hero-text-color; // Text color
-    border-radius: $hero-border-radius; // Rounded corners
-    text-align: center; // Align text to the center
-    cursor: default; // Default cursor (non-clickable)
-    margin-bottom: 10px; // Margin below the message
-    text-transform: $hero-text-transform; // Convert text to uppercase
+    display: inline-block; /* Keep the message inline with other content */
+    padding: $hero-padding; /* Padding for the message box */
+    background-color: $hero-bg-color; /* Background color for the message */
+    color: $hero-text-color; /* Set text color */
+    border-radius: $hero-border-radius; /* Apply rounded corners */
+    text-align: center; /* Center the text within the message box */
+    cursor: default; /* Set default cursor (indicating non-clickable) */
+    margin-bottom: 10px; /* Space below the message */
+    text-transform: $hero-text-transform; /* Ensure text is uppercase */
   }
 
-  // Style for the hero image
+  /* Styling for the hero image */
   .hero-image {
-    height: 30vh;
-    display: block; // Display as a block element
-    margin: 0 auto; // Center horizontally
-    margin-top: 10px; // Margin at the top for spacing between message and image
+    height: 30vh; /* Height for the hero image */
+    display: block; /* Display the image as a block element */
+    margin: 0 auto; /* Center the image horizontally */
+    margin-top: 10px; /* Space between the message and image */
   }
 }

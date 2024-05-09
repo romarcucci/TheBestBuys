@@ -1,5 +1,9 @@
 import React from 'react';
+
+// Assets
 import robotAvatar from '../../assets/images/robot_profile_picture.png';
+
+// Styles
 import '../../styles/chatbot/BotMessage.scss';
 
 const BotMessage = ({ content }) => {

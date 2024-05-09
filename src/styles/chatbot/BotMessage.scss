@@ -1,44 +1,49 @@
-// Common styling for the bot message component
-$tile-spacing: 10px; // Spacing between tiles
-$tile-border-radius: 10px; // Border radius for tiles
-$bot-bg-color: #607d8b; // Background color for the bot's message
-$bot-pp-bg-color: white; // Background color for the bot's message
-$text-color: white; // Default text color for bot messages
-$recommendation-bg-color: white;
-$tile-width: 150px; // Fixed width for the tiles
-$tile-hover-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1); // Shadow on hover
-$profile-picture-size: 30px; // Size for the profile picture
-$border-radius: 15px;
+// Common styling variables for the bot message component
+$tile-spacing: 10px; /* Space between tiles */
+$tile-border-radius: 10px; /* Rounded corners for tiles */
+$bot-bg-color: #607d8b; /* Background color for the bot's message */
+$bot-pp-bg-color: white; /* Background color for the bot's profile picture */
+$text-color: white; /* Default text color for bot messages */
+$recommendation-bg-color: white; /* Background color for recommended content */
+$tile-width: 150px; /* Fixed width for tiles */
+$tile-hover-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1); /* Shadow effect on hover */
+$profile-picture-size: 30px; /* Fixed size for the bot's profile picture */
+$border-radius: 15px; /* Rounded corners for general elements */
 
+// Keyframes for animations
 @keyframes slide-in-from-left {
   from {
-    transform: translateX(-100%);
-    opacity: 0;
+    transform: translateX(-100%); /* Start off-screen to the left */
+    opacity: 0; /* Initially invisible */
   }
   to {
-    transform: translateX(0);
-    opacity: 1;
+    transform: translateX(0); /* Move to original position */
+    opacity: 1; /* Fully visible */
   }
 }
+
+// Styling for the chat message component
 .chat-msg {
   &.bot-message {
-    flex-direction: row; // Profile picture on the left
-    align-self: flex-start;
-    animation: slide-in-from-left 0.3s forwards;
+    flex-direction: row; /* Profile picture on the left, text on the right */
+    align-self: flex-start; /* Align message to the start (left) */
+    animation: slide-in-from-left 0.3s forwards; /* Animation for entering from the left */
 
+    // Styling for the profile picture
     .profile-picture {
-      border-radius: 50%; // Circular profile picture
-      width: 30px;
-      height: 30px;
-      margin-right: 10px; // Space between profile picture and message content
-      background-color: $bot-pp-bg-color;
+      border-radius: 50%; /* Make it circular */
+      width: $profile-picture-size; /* Use the defined profile picture size */
+      height: $profile-picture-size; /* Keep the height consistent with the width */
+      margin-right: $tile-spacing; /* Space between the profile picture and content */
+      background-color: $bot-pp-bg-color; /* Use the defined background color */
     }
 
+    // Styling for the message content
     .message-content {
-      background-color: $bot-bg-color;
-      color: $text-color;
-      padding: 10px;
-      border-radius: $border-radius;
+      background-color: $bot-bg-color; /* Use the bot message background color */
+      color: $text-color; /* Use the defined text color */
+      padding: $tile-spacing; /* Padding around the content */
+      border-radius: $border-radius; /* Use defined border radius for rounded corners */
     }
   }
 }

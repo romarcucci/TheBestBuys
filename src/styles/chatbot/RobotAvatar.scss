@@ -1,29 +1,37 @@
-// File: src/styles/RobotAvatar.scss
-$avatar-size: 80px; // Size of the avatar
-$avatar-bg-color: #fff; // Background color
-$avatar-label-font-weight: bold; // Font weight for the label
-$avatar-label-color: #fff; // White text color
-$avatar-label-margin-top: 10px; // Space between avatar and label
+// Common style variables for the robot avatar
+$avatar-size: 80px; /* Diameter of the avatar */
+$avatar-bg-color: #fff; /* Background color for the avatar */
+$avatar-padding: 10px; /* Padding around the avatar */
+$avatar-border-radius: 50%; /* Border radius for a circular shape */
+$avatar-margin-top: 10px; /* Margin above the avatar */
+$avatar-margin-bottom: 50px; /* Margin below the avatar */
 
+$avatar-label-font-weight: bold; /* Font weight for the label text */
+$avatar-label-color: #fff; /* White text color for the label */
+$avatar-label-margin-top: 10px; /* Space between the avatar and the label */
+
+// Styling for the robot avatar component
 .robot-avatar {
-  display: flex;
-  flex-direction: column; // Stack image and label vertically
-  align-items: center; // Center elements horizontally
-  margin-top: 10px;
-  margin-bottom: 50px;
+  display: flex; /* Use Flexbox for layout */
+  flex-direction: column; /* Stack elements vertically (image and label) */
+  align-items: center; /* Center the content horizontally */
+  margin-top: $avatar-margin-top; /* Margin above the avatar */
+  margin-bottom: $avatar-margin-bottom; /* Margin below the avatar */
 }
 
+// Styling for the robot avatar image
 .robot-image {
-  width: $avatar-size;
-  height: $avatar-size;
-  border-radius: 50%; // Circular shape
-  padding: 10px; // Padding around the image
-  background-color: $avatar-bg-color; // Background color
+  width: $avatar-size; /* Set width to avatar size */
+  height: $avatar-size; /* Set height to avatar size */
+  border-radius: $avatar-border-radius; /* Circular shape */
+  padding: $avatar-padding; /* Padding around the avatar image */
+  background-color: $avatar-bg-color; /* Background color for the avatar */
 }
 
+// Styling for the label below the avatar
 .robot-label {
-  font-weight: $avatar-label-font-weight; // Set font weight to bold
-  color: $avatar-label-color; // White text color
-  margin-top: $avatar-label-margin-top; // Space between avatar and label
-  text-align: center; // Center the label text
+  font-weight: $avatar-label-font-weight; /* Set the font weight to bold */
+  color: $avatar-label-color; /* White text color */
+  margin-top: $avatar-label-margin-top; /* Space between the avatar and the label */
+  text-align: center; /* Center the text within the label */
 }

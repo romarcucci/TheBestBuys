@@ -1,4 +1,6 @@
 import React from 'react';
+
+// Icons
 import {
   FaMobileAlt,
   FaTv,
@@ -13,9 +15,13 @@ import {
   FaDesktop,
   FaGamepad,
 } from 'react-icons/fa';
+
+// Styles
 import '../styles/ProductGrid.scss';
 
+// Functional component that displays a grid of product categories
 const ProductGrid = ({ onCategorySelect }) => {
+  // Array of product categories with labels and corresponding icons
   const categories = [
     { label: 'Smartphones', icon: <FaMobileAlt /> },
     { label: 'TV', icon: <FaTv /> },
@@ -33,18 +39,28 @@ const ProductGrid = ({ onCategorySelect }) => {
 
   return (
     <div className="product-grid">
+      {' '}
+      {/* Container for the product grid */}
       {categories.map((category, index) => (
         <div
-          key={index}
-          className="product-category"
-          onClick={() => onCategorySelect(category.label)}
+          key={index} // Unique key for each category
+          className="product-category" // Class for styling the product category
+          onClick={() => onCategorySelect(category.label)} // Event handler for category selection
         >
-          <div className="icon-wrapper">{category.icon}</div>
-          <span className="category-label">{category.label}</span>
+          <div className="icon-wrapper">
+            {' '}
+            {/* Wrapper for the category icon */}
+            {category.icon} {/* Display the category icon */}
+          </div>
+          <span className="category-label">
+            {' '}
+            {/* Label for the category */}
+            {category.label} {/* Display the category name */}
+          </span>
         </div>
       ))}
     </div>
   );
 };
 
-export default ProductGrid;
+export default ProductGrid; // Exporting the ProductGrid component

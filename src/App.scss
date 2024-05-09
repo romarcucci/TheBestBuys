@@ -1,0 +1,38 @@
+$default-margin: 0; /* Default margin for body and other elements */
+$default-padding: 0; /* Default padding for body and other elements */
+$box-sizing: border-box; /* Standard box-sizing for consistent layout */
+$font-family: Arial, sans-serif; /* Default font family for the app */
+$app-min-height: 100vh; /* Minimum height for the app component */
+
+/* Variables for background video */
+$video-position: fixed; /* Video is fixed in place */
+$video-width: 100%; /* Video spans the entire width */
+$video-height: 100%; /* Video spans the entire height */
+$video-object-fit: cover; /* Video covers the entire area */
+$video-z-index: -1; /* Video stays in the background */
+
+/* Base styling for the entire application */
+body {
+  margin: $default-margin; /* Apply the default margin */
+  padding: $default-padding; /* Apply the default padding */
+  box-sizing: $box-sizing; /* Apply consistent box-sizing */
+  font-family: $font-family; /* Set the default font family */
+}
+
+/* Styling for the main App component */
+.app {
+  display: flex; /* Use Flexbox for layout management */
+  flex-direction: column; /* Arrange child elements in a vertical stack */
+  min-height: $app-min-height; /* Ensure the app covers at least the full viewport height */
+}
+
+/* Styling for the background video */
+.background-video {
+  position: $video-position; /* Fix the video in place */
+  top: 0; /* Align the top edge with the top of the viewport */
+  left: 0; /* Align the left edge with the left of the viewport */
+  width: $video-width; /* Set the width to 100% */
+  height: $video-height; /* Set the height to 100% */
+  object-fit: $video-object-fit; /* Ensure the video fills the entire area without distorting */
+  z-index: $video-z-index; /* Position the video behind other content */
+}

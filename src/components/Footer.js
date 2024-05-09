@@ -1,6 +1,7 @@
-// File: D:\WS\TheBestBuys\src\components\Footer.js
 import React from 'react';
-import '../styles/Footer.scss'; // Create a new SCSS file for styling
+
+// Assets
+import '../styles/Footer.scss';
 
 const Footer = () => {
   return (

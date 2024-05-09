@@ -1,39 +1,52 @@
-// LoadingSpinner.scss
+// Define common style variables
+$spinner-dot-size: 8px; /* Size of each spinner dot */
+$spinner-dot-color: #ccc; /* Default color for spinner dots */
+$dot-blink-animation-time: 1.4s; /* Duration for dot blink animation */
+$dot-spacing: 4px; /* Space between spinner dots */
+$spinner-margin-left: 50px; /* Left margin for spinner alignment */
+$spinner-margin-top: 10px; /* Top margin for spinner alignment */
+
+// Styling for the loading spinner component
 .loading-spinner {
-  display: flex;
-  align-items: center;
-  margin-left: 50px;
-  margin-top: 10px;
+  display: flex; /* Use Flexbox for alignment */
+  align-items: center; /* Center-align elements vertically */
+  margin-left: $spinner-margin-left; /* Left margin for spinner alignment */
+  margin-top: $spinner-margin-top; /* Top margin for spinner alignment */
 
+  // Styling for individual spinner dots
   .dot {
-    width: 8px;
-    height: 8px;
-    background-color: #ccc; // Adjust the color to suit your design
-    border-radius: 50%;
-    margin-right: 4px;
-    animation: dotBlink 1.4s infinite both;
+    width: $spinner-dot-size; /* Set the width of the dot */
+    height: $spinner-dot-size; /* Set the height of the dot */
+    background-color: $spinner-dot-color; /* Set the color of the dot */
+    border-radius: 50%; /* Make the dot circular */
+    margin-right: $dot-spacing; /* Space between dots */
+    animation: dotBlink $dot-blink-animation-time infinite both; /* Blink animation for dots */
 
+    // Animation delays for sequential dot blinking
     &:nth-child(1) {
-      animation-delay: 0s;
+      animation-delay: 0s; /* No delay for the first dot */
     }
 
     &:nth-child(2) {
-      animation-delay: 0.2s;
+      animation-delay: 0.2s; /* Delay for the second dot */
     }
 
     &:nth-child(3) {
-      animation-delay: 0.4s;
+      animation-delay: 0.4s; /* Delay for the third dot */
     }
   }
 }
 
+// Keyframe animation for dot blinking
 @keyframes dotBlink {
   0%,
   20%,
   100% {
+    /* Full opacity at the beginning, middle, and end */
     opacity: 1;
   }
   50% {
+    /* Reduce opacity for a blinking effect */
     opacity: 0.5;
   }
 }

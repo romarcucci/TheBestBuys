@@ -1,46 +1,48 @@
 // Common styling variables
-$tile-spacing: 10px; // Spacing between tiles
-$tile-border-radius: 15px; // Border radius for recommendation tiles
-$tile-width: 150px; // Fixed width for recommendation tiles
-$recommendation-bg-color: white; // Background color for tiles
-$text-color: #333; // Default text color for the label
+$tile-spacing: 10px; /* Spacing between tiles */
+$tile-border-radius: 15px; /* Border radius for recommendation tiles */
+$tile-width: 150px; /* Fixed width for recommendation tiles */
+$recommendation-bg-color: white; /* Background color for recommendation tiles */
+$text-color: #333; /* Default text color for labels */
 
-// Styling for Bot Recommendations (slide-in animation)
+// Styling for Bot Recommendations (with slide-in animation)
 .bot-recommendations {
-  animation: slide-in-from-left 0.3s forwards; // Slide in from left animation
-  display: flex; // Flex layout for proper spacing
-  flex-wrap: wrap; // Allow tiles to wrap
-  gap: $tile-spacing; // Spacing between tiles
-  margin-top: 5px; // Padding around the container
-  margin-left: 40px; // Padding around the container
+  animation: slide-in-from-left 0.3s forwards; /* Slide-in animation from the left */
+  display: flex; /* Use Flexbox for layout */
+  flex-wrap: wrap; /* Allow tiles to wrap to the next line if needed */
+  gap: $tile-spacing; /* Space between recommendation tiles */
+  margin-top: 5px; /* Margin at the top of the container */
+  margin-left: 40px; /* Margin on the left of the container */
 
   // Styling for individual recommendation tiles
   .recommendation-tile {
-    border-radius: $tile-border-radius; // Rounded corners
-    text-align: center; // Center the content
-    transition: box-shadow 0.3s; // Smooth hover transition
-    width: $tile-width; // Fixed width for consistency
-    background-color: #404040; // White background
+    border-radius: $tile-border-radius; /* Apply rounded corners */
+    text-align: center; /* Center-align text and content */
+    transition: box-shadow 0.3s; /* Smooth transition for hover effects */
+    width: $tile-width; /* Fixed width for consistency */
+    background-color: #404040; /* Dark background color */
 
     a {
-      text-decoration: none;
+      text-decoration: none; /* Remove text underlines for links */
     }
 
+    // Styling for the image area of the tile
     .image-affiliated-link {
-      background-color: $recommendation-bg-color; // White background
-      border-top-right-radius: 15px;
-      border-top-left-radius: 15px;
-      display: flex; // Flexbox to center the image
-      justify-content: center; // Center horizontally
-      align-items: center; // Center vertically
-      padding-top: 15px;
-      padding-bottom: 15px;
-      width: 100%;
+      background-color: $recommendation-bg-color; /* Set background color for the image area */
+      border-top-right-radius: $tile-border-radius; /* Rounded corners at the top */
+      border-top-left-radius: $tile-border-radius; /* Rounded corners at the top */
+      display: flex; /* Flexbox for alignment */
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+      padding-top: 15px; /* Padding at the top of the image area */
+      padding-bottom: 15px; /* Padding at the bottom of the image area */
+      width: 100%; /* Make sure the width is consistent with the tile */
     }
 
+    // Styling for the text area of the tile
     .test-affiliated-link {
-      color: white; // Color for text
-      font-weight: bold;
+      color: $recommendation-bg-color; /* Text color for affiliated links */
+      font-weight: bold; /* Make the text bold */
     }
   }
 }
