@@ -7,50 +7,37 @@ $recommendation-bg-color: white;
 $tile-width: 150px; // Fixed width for the tiles
 $tile-hover-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1); // Shadow on hover
 $profile-picture-size: 30px; // Size for the profile picture
+$border-radius: 15px;
 
-.bot-message {
-  display: flex;
-  flex-direction: column; /* Ensure `message-row` and `recommendations-row` are vertical */
-  padding: 10px;
-
-  .message-row {
-    display: flex; /* Aligns elements horizontally */
-    align-items: flex-start; /* Align at the top */
+@keyframes slide-in-from-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
   }
-
-  .profile-picture {
-    width: $profile-picture-size; /* Defined size for profile picture */
-    height: $profile-picture-size;
-    border-radius: 50%; /* Make it circular */
-    margin-right: 10px; /* Space between picture and message */
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
+}
+.chat-msg {
+  &.bot-message {
+    flex-direction: row; // Profile picture on the left
+    align-self: flex-start;
+    animation: slide-in-from-left 0.3s forwards;
 
-  .message-content {
-    flex: 1; /* Take up the rest of the space */
-    background-color: $bot-bg-color; /* Background for bot message */
-    color: $text-color; /* Text color */
-    padding: 10px;
-    border-radius: $tile-border-radius; /* Border radius for message box */
-  }
+    .profile-picture {
+      border-radius: 50%; // Circular profile picture
+      width: 30px;
+      height: 30px;
+      margin-right: 10px; // Space between profile picture and message content
+    }
 
-  .recommendations-row {
-    display: flex; /* Ensures recommendations are horizontal */
-    flex-direction: row; /* Arrange tiles horizontally */
-    margin-top: 10px; /* Space between message-row and recommendations */
-    margin-left: $profile-picture-size + 10px; /* Align with profile picture */
-
-    .recommendation-tile {
-      background-color: $recommendation-bg-color; /* Tile background */
-      border-radius: $tile-border-radius; /* Rounded corners */
+    .message-content {
+      background-color: $bot-bg-color;
+      color: $text-color;
       padding: 10px;
-      text-align: center; /* Center content */
-      transition: box-shadow 0.3s; /* Smooth hover effect */
-      width: $tile-width; /* Fixed width */
-      margin-right: $tile-spacing; /* Space between tiles */
-
-      &:hover {
-        box-shadow: $tile-hover-shadow; /* Shadow on hover */
-      }
+      border-radius: $border-radius;
+      font-family: Arial, sans-serif;
     }
   }
 }
