@@ -52,7 +52,6 @@ $breakpoint-tablet: 768px; // Width for tablet responsiveness
     padding: 20px;
     flex-grow: 1; // Allow the chat log to grow with content
     overflow-y: auto; // Enable vertical scrolling
-    border-bottom: 1px solid #ccc; // Add a border at the bottom
     display: flex; // Use Flexbox
     flex-direction: column; // Stack messages vertically
   }
