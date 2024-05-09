@@ -1,0 +1,21 @@
+// File: D:\WS\TheBestBuys\src\styles\Footer.scss
+.footer {
+  background-color: #2b2d42; // Dark background color
+  color: white; // White text color
+  margin-top: 5vh;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex; // Flexbox to position text
+  justify-content: space-between; // Spread text at 1/3 and 2/3
+  align-items: center; // Center text vertically
+}
+
+.footer-left {
+  width: 50%; // 1/3 of the width
+  text-align: center; // Align text to the left
+}
+
+.footer-right {
+  width: 50%; // 1/3 of the width
+  text-align: center; // Align text to the right
+}

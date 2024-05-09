@@ -3,6 +3,7 @@ import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import ProductGrid from './components/ProductGrid';
 import ChatbotInterface from './components/chatbot/ChatbotInterface';
+import Footer from './components/Footer';
 import backgroundVideo from './assets/videos/background.mp4';
 import './styles/App.scss';
 
@@ -33,6 +34,7 @@ const App = () => {
           <ChatbotInterface selectedCategory={selectedCategory} />
         )}
       </div>
+      <Footer />
     </div>
   );
 };

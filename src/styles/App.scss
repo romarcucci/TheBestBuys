@@ -4,6 +4,13 @@ body {
   padding: 0; /* Remove default padding */
   box-shadow: border-box; /* Optional, but helpful for consistent layout */
   font-family: Arial, sans-serif; /* Set a default font if desired */
+
+  .app {
+    display: flex; // Use Flexbox for layout
+    flex-direction: column; // Stack vertically
+    min-height: 100vh; // Minimum height is 100% of viewport
+  }
+
   .background-video {
     position: fixed; // Keep the video in a fixed position
     top: 0;
@@ -12,11 +19,5 @@ body {
     height: 100%; // Full height
     object-fit: cover; // Ensure the video fills the entire area
     z-index: -1; // Keep the video behind other elements
-  }
-
-  .app {
-    display: flex; // Use Flexbox for layout
-    flex-direction: column; // Stack vertically
-    min-height: 100vh; // Minimum height is 100% of viewport
   }
 }
