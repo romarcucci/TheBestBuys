@@ -1,5 +1,5 @@
 import React from 'react';
-import robotAvatar from '../../assets/robot_profile_picture.png';
+import robotAvatar from '../../assets/images/robot_profile_picture.png';
 import '../../styles/chatbot/BotMessage.scss';
 
 const BotMessage = ({ content }) => {

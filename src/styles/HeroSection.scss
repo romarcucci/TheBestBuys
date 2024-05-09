@@ -3,7 +3,6 @@ $hero-padding: 20px; // Padding for the hero section
 $hero-bg-color: #008cba; // Background color for the hero message
 $hero-text-color: white; // Text color for the hero message
 $hero-border-radius: 5px; // Border radius for rounded corners
-$hero-font-family: Arial, sans-serif; // Font family for the hero message
 $hero-text-transform: uppercase; // Transform text to uppercase
 
 // Style for the hero section
@@ -23,7 +22,6 @@ $hero-text-transform: uppercase; // Transform text to uppercase
     text-align: center; // Align text to the center
     cursor: default; // Default cursor (non-clickable)
     margin-bottom: 10px; // Margin below the message
-    font-family: $hero-font-family; // Font for the text
     text-transform: $hero-text-transform; // Convert text to uppercase
   }
 

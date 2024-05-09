@@ -1,7 +1,6 @@
 // File: src/styles/RobotAvatar.scss
 $avatar-size: 80px; // Size of the avatar
 $avatar-bg-color: #fff; // Background color
-$avatar-label-font-family: Arial, sans-serif; // Font for the label
 $avatar-label-font-weight: bold; // Font weight for the label
 $avatar-label-color: #fff; // White text color
 $avatar-label-margin-top: 10px; // Space between avatar and label
@@ -23,7 +22,6 @@ $avatar-label-margin-top: 10px; // Space between avatar and label
 }
 
 .robot-label {
-  font-family: $avatar-label-font-family; // Set font to Arial
   font-weight: $avatar-label-font-weight; // Set font weight to bold
   color: $avatar-label-color; // White text color
   margin-top: $avatar-label-margin-top; // Space between avatar and label

@@ -7,7 +7,6 @@ $product-border-color: #ccc;
 $product-hover-bg: #e0e0e0;
 $product-icon-size: 5em;
 $product-icon-color: #4d4d4d;
-$product-font-family: Arial, sans-serif;
 
 // Define breakpoints for responsiveness
 $breakpoint-smartphone: 480px;
@@ -83,7 +82,6 @@ $breakpoint-desktop: 1024px;
 
 // Style for the category label
 .category-label {
-  font-family: $product-font-family;
   text-transform: uppercase;
   color: $product-icon-color;
   margin-top: 10px;
