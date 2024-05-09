@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import BotMessage from './BotMessage';
+import BotRecommendations from './BotRecommendations';
 import { FaPaperPlane } from 'react-icons/fa';
 import '../styles/ChatbotInterface.scss';
 
@@ -87,12 +88,12 @@ const ChatbotInterface = ({ selectedCategory }) => {
         {chatLog.map((msg, index) => {
           if (msg.type === 'bot') {
             return (
-              <BotMessage
-                key={index}
-                className={`chat-msg ${msg.type}`}
-                content={msg.content}
-                recommendations={msg.recommendations}
-              />
+              <div>
+                <BotMessage key={index} content={msg.content} />
+                {msg.recommendations && msg.recommendations.length > 0 && (
+                  <BotRecommendations key={index} links={msg.recommendations} />
+                )}
+              </div>
             );
           }
 

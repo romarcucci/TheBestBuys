@@ -21,17 +21,6 @@ $breakpoint-tablet: 768px;
   }
 }
 
-@keyframes slide-in-from-left {
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
 // Main container setup for the chatbot
 .chatbot-interface {
   background-color: $chatinterface-bg-color;
@@ -89,27 +78,6 @@ $breakpoint-tablet: 768px;
       text-align: left; // Ensure text is aligned left
       align-self: flex-end;
       animation: slide-in-from-bottom 0.3s forwards;
-    }
-
-    &.bot {
-      flex-direction: row; // Profile picture on the left
-      align-self: flex-start;
-      animation: slide-in-from-left 0.3s forwards;
-
-      .profile-picture {
-        border-radius: 50%; // Circular profile picture
-        width: 30px;
-        height: 30px;
-        margin-right: 10px; // Space between profile picture and message content
-      }
-
-      .message-content {
-        background-color: $bot-bg-color;
-        color: $text-color;
-        padding: 10px;
-        border-radius: $border-radius;
-        font-family: Arial, sans-serif;
-      }
     }
   }
 
