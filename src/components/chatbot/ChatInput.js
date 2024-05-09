@@ -2,7 +2,12 @@ import React from 'react';
 import { FaPaperPlane } from 'react-icons/fa'; // Import the paper plane icon
 import '../../styles/chatbot/ChatInput.scss'; // Import the styles for the component
 
-const ChatInput = ({ currentInput, setCurrentInput, sendMessage, isLoading }) => {
+const ChatInput = ({
+  currentInput,
+  setCurrentInput,
+  sendMessage,
+  isLoading,
+}) => {
   return (
     <div className="input-container">
       <textarea
@@ -16,7 +21,7 @@ const ChatInput = ({ currentInput, setCurrentInput, sendMessage, isLoading }) =>
           }
         }}
         className="chat-input"
-        placeholder="Type your message..."
+        placeholder="Message Robot Advisor"
       />
       <div
         className={`send-button ${isLoading ? 'disabled' : ''}`}

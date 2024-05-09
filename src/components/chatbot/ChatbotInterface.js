@@ -4,8 +4,8 @@ import BotMessage from './BotMessage';
 import BotRecommendations from './BotRecommendations';
 import RobotAvatar from './RobotAvatar';
 import LoadingSpinner from './LoadingSpinner'; // Import the LoadingSpinner component
-import { FaPaperPlane } from 'react-icons/fa';
 import '../../styles/chatbot/ChatbotInterface.scss';
+import ChatInput from './ChatInput';
 
 const ChatbotInterface = ({ selectedCategory }) => {
   const [chatLog, setChatLog] = useState([]);
@@ -88,7 +88,7 @@ const ChatbotInterface = ({ selectedCategory }) => {
 
   return (
     <div className="chatbot-interface">
-      <div className="chat-log" ref={chatLogRef}> 
+      <div className="chat-log" ref={chatLogRef}>
         <RobotAvatar /> {/* Add the RobotAvatar component here */}
         {chatLog.map((msg, index) => {
           if (msg.type === 'bot') {
@@ -117,28 +117,12 @@ const ChatbotInterface = ({ selectedCategory }) => {
           );
         })}
       </div>
-
-      <div className="input-container">
-        <textarea
-          rows="1"
-          value={currentInput}
-          onChange={(e) => setCurrentInput(e.target.value)}
-          onKeyPress={(e) => {
-            if (e.key === 'Enter' && !e.shiftKey && !isLoading) {
-              sendMessage();
-              e.preventDefault();
-            }
-          }}
-          className="chat-input"
-          placeholder="Type your message..."
-        />
-        <div
-          className={`send-button ${isLoading ? 'disabled' : ''}`}
-          onClick={!isLoading ? sendMessage : null}
-        >
-          <FaPaperPlane />
-        </div>
-      </div>
+      <ChatInput
+        currentInput={currentInput}
+        setCurrentInput={setCurrentInput}
+        sendMessage={sendMessage}
+        isLoading={isLoading}
+      />
     </div>
   );
 };
