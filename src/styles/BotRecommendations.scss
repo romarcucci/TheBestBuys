@@ -1,34 +1,46 @@
-// SCSS Variables for Consistent Styling
+// Common styling variables
 $tile-spacing: 10px; // Spacing between tiles
-$tile-border-radius: 10px; // Border radius for tiles and messages
-$profile-picture-size: 30px; // Size for the profile picture
-$bot-bg-color: #607d8b; // Background color for bot messages
-$text-color: white; // Default text color
-$recommendation-bg-color: white; // Background color for recommendations
+$tile-border-radius: 15px; // Border radius for recommendation tiles
 $tile-width: 150px; // Fixed width for recommendation tiles
-$tile-hover-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1); // Hover shadow effect
+$recommendation-bg-color: white; // Background color for tiles
+$text-color: #333; // Default text color for the label
 
-// Keyframe Animation for Sliding In from the Left
-@keyframes slide-in-from-left {
-  from {
-    transform: translateX(-100%); // Start from off-screen (left)
-    opacity: 0; // Invisible
-  }
-  to {
-    transform: translateX(0); // Position back on-screen
-    opacity: 1; // Fully visible
-  }
-}
+// Styling for Bot Recommendations (slide-in animation)
+.bot-recommendations {
+  animation: slide-in-from-left 0.3s forwards; // Slide in from left animation
+  display: flex; // Flex layout for proper spacing
+  flex-wrap: wrap; // Allow tiles to wrap
+  gap: $tile-spacing; // Spacing between tiles
+  margin-top: 5px; // Padding around the container
+  margin-left: 40px; // Padding around the container
 
-// Main Styling for Chat Messages
-.chat-msg {
-  display: flex; // Flexbox for flexible layouts
-  flex-direction: column; // Stack elements vertically
-  padding: 10px; // Padding around messages
-  border-radius: $tile-border-radius; // Rounded corners
+  // Styling for individual recommendation tiles
+  .recommendation-tile {
+    border-radius: $tile-border-radius; // Rounded corners
+    text-align: center; // Center the content
+    transition: box-shadow 0.3s; // Smooth hover transition
+    width: $tile-width; // Fixed width for consistency
+    background-color: #404040; // White background
 
-  // Animation for Bot Recommendations
-  &.bot-recommendation {
-    animation: slide-in-from-left 0.3s forwards; // Animation for sliding in
+    a {
+      text-decoration: none;
+    }
+
+    .image-affiliated-link {
+      background-color: $recommendation-bg-color; // White background
+      border-top-right-radius: 15px;
+      border-top-left-radius: 15px;
+      display: flex; // Flexbox to center the image
+      justify-content: center; // Center horizontally
+      align-items: center; // Center vertically
+      padding-top: 15px;
+      padding-bottom: 15px;
+      width: 100%;
+    }
+
+    .test-affiliated-link {
+      color: white; // Color for text
+      font-weight: bold;
+    }
   }
 }

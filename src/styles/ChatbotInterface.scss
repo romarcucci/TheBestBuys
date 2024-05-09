@@ -1,7 +1,7 @@
 // Define primary color variables for consistent styling
 $primary-color: #673ab7; // Purple color for primary elements
 $bot-bg-color: #607d8b; // Background color for bot messages
-$chatinterface-bg-color: #212121; // Background color for the chat interface
+$chatinterface-bg-color: #262626; // Background color for the chat interface
 $text-color: #fff; // White text color
 $border-radius: 15px; // General border radius for smooth edges
 
@@ -68,15 +68,16 @@ $breakpoint-tablet: 768px; // Width for tablet responsiveness
   .chat-msg {
     display: flex; // Use Flexbox
     align-items: flex-end; // Align elements at the bottom
-    padding: 10px; // Padding around messages
     border-radius: $border-radius; // Smooth corners
     font-family: Arial, sans-serif; // Default font
-    margin-bottom: 10px; // Margin at the bottom
     max-width: 75%; // Restrict maximum width
     transition: all 0.3s; // Smooth transitions for animations
 
     // Style for user messages
     &.user {
+      padding: 10px; // Padding around messages
+      margin-top: 15px; // Margin at the bottom
+      margin-bottom: 15px; // Margin at the bottom
       background-color: $primary-color; // User messages use the primary color
       color: $text-color; // White text color
       align-self: flex-end; // Align to the right

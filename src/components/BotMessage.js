@@ -4,11 +4,9 @@ import '../styles/BotMessage.scss';
 
 const BotMessage = ({ content }) => {
   return (
-    <div>
-      <div className={'chat-msg bot-message'}>
-        <img src={robotAvatar} alt="Bot" className="profile-picture" />
-        <div className="message-content">{content}</div>
-      </div>
+    <div className={'chat-msg bot-message'}>
+      <img src={robotAvatar} alt="Bot" className="profile-picture" />
+      <div className="message-content">{content}</div>
     </div>
   );
 };

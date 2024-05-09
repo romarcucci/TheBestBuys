@@ -61,7 +61,7 @@ const ChatbotInterface = ({ selectedCategory }) => {
             recommendations: [
               '<a class="affiliated-link" href="https://amzn.eu/d/8gqaqCV"><div class="image-affiliated-link"><img alt="Apple iPhone 15 (128 Go) - Noir" src="https://m.media-amazon.com/images/I/61eEYLATF9L._AC_SY110_.jpg" /></div><span class="test-affiliated-link">Apple iPhone 15 (128 Go) - Noir</span></a>',
 
-              '<a class="affiliated-link" href="https://amzn.eu/d/8gqaqCV"><div class="image-affiliated-link"><img alt="Apple iPhone 15 (128 Go) - Noir" src="https://m.media-amazon.com/images/I/61eEYLATF9L._AC_SY110_.jpg" /></div><span class="test-affiliated-link">Apple iPhone 15 (128 Go) - Noir</span></a>',
+              // '<a class="affiliated-link" href="https://amzn.eu/d/8gqaqCV"><div class="image-affiliated-link"><img alt="Apple iPhone 15 (128 Go) - Noir" src="https://m.media-amazon.com/images/I/61eEYLATF9L._AC_SY110_.jpg" /></div><span class="test-affiliated-link">Apple iPhone 15 (128 Go) - Noir</span></a>',
             ],
           },
         ]); // Add bot response
@@ -88,10 +88,10 @@ const ChatbotInterface = ({ selectedCategory }) => {
         {chatLog.map((msg, index) => {
           if (msg.type === 'bot') {
             return (
-              <div>
-                <BotMessage key={index} content={msg.content} />
+              <div key={index}>
+                <BotMessage content={msg.content} />
                 {msg.recommendations && msg.recommendations.length > 0 && (
-                  <BotRecommendations key={index} links={msg.recommendations} />
+                  <BotRecommendations links={msg.recommendations} />
                 )}
               </div>
             );

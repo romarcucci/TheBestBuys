@@ -1,9 +1,9 @@
 import React from 'react';
-import '../styles/BotRecommendations.scss'; // Create a new SCSS file for this component
+import '../styles/BotRecommendations.scss'; // SCSS styling for this component
 
 const BotRecommendations = ({ links }) => {
   return (
-    <div className="chat-msg bot-recommendation">
+    <div className="chat-msg bot-recommendations">
       {links.map((link, index) => (
         <div
           key={index}
