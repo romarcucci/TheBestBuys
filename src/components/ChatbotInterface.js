@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import BotMessage from './BotMessage';
 import BotRecommendations from './BotRecommendations';
+import LoadingSpinner from './LoadingSpinner'; // Import the LoadingSpinner component
 import { FaPaperPlane } from 'react-icons/fa';
 import '../styles/ChatbotInterface.scss';
 
@@ -10,14 +11,13 @@ const ChatbotInterface = ({ selectedCategory }) => {
   const [currentInput, setCurrentInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const chatLogRef = useRef(null); // Reference to the chat log container
+  const chatLogRef = useRef(null);
 
   useEffect(() => {
     if (chatLogRef.current) {
-      chatLogRef.current.style.scrollBehavior = 'smooth';
-      chatLogRef.current.scrollTop = chatLogRef.current.scrollHeight; // Auto-scroll to the bottom
+      chatLogRef.current.scrollTop = chatLogRef.current.scrollHeight;
     }
-  }, [chatLog]); // Triggered when chatLog changes
+  }, [chatLog]);
 
   useEffect(() => {
     if (selectedCategory) {
@@ -28,31 +28,32 @@ const ChatbotInterface = ({ selectedCategory }) => {
 
   const sendMessage = async () => {
     if (currentInput.trim() === '') {
-      return; // Don't send empty messages
+      return;
     }
 
-    setIsLoading(true); // Indicate loading state
+    setIsLoading(true);
 
-    setChatLog((prev) => [...prev, { type: 'user', content: currentInput }]); // Add user message
-
-    setChatLog((prev) => [...prev, { type: 'loading', content: '' }]); // Add loading spinner
+    setChatLog((prev) => [
+      ...prev,
+      { type: 'user', content: currentInput },
+      { type: 'loading', content: '' }, // Add loading spinner
+    ]);
 
     const userMessage = currentInput;
-    setCurrentInput(''); // Clear the input field
+    setCurrentInput('');
 
     try {
       const response = await axios.post('http://localhost:3000/chat', {
         message: userMessage,
       });
 
-      setChatLog((prev) => prev.filter((msg) => msg.type !== 'loading')); // Remove loading spinner
+      setChatLog((prev) => prev.filter((msg) => msg.type !== 'loading'));
 
       if (
         response.data &&
         response.data.message &&
         typeof response.data.message.content === 'string'
       ) {
-        // const recommendations = response.data.productRecommendations || [];
         setChatLog((prev) => [
           ...prev,
           {
@@ -71,8 +72,8 @@ const ChatbotInterface = ({ selectedCategory }) => {
       }
     } catch (error) {
       console.error('Error sending message:', error);
-
       setChatLog((prev) => [
+        ...prev,
         {
           type: 'bot',
           content:
@@ -80,9 +81,10 @@ const ChatbotInterface = ({ selectedCategory }) => {
         },
       ]);
     } finally {
-      setIsLoading(false); // Allow interaction again
+      setIsLoading(false);
     }
   };
+
   return (
     <div className="chatbot-interface">
       <div className="chat-log" ref={chatLogRef}>
@@ -91,18 +93,24 @@ const ChatbotInterface = ({ selectedCategory }) => {
             return (
               <div key={index}>
                 <BotMessage content={msg.content} />
-                {msg.recommendations && msg.recommendations.length > 0 && (
+                {msg.recommendations && (
                   <BotRecommendations links={msg.recommendations} />
                 )}
               </div>
             );
           }
 
+          if (msg.type === 'loading') {
+            return (
+              <div key={index} className="chat-msg bot">
+                <LoadingSpinner /> {/* Display the loading spinner */}
+              </div>
+            );
+          }
+
           return (
             <div key={index} className={`chat-msg ${msg.type}`}>
-              {msg.type === 'user' && (
-                <div className="message-content">{msg.content}</div>
-              )}
+              {msg.content}
             </div>
           );
         })}
@@ -115,8 +123,8 @@ const ChatbotInterface = ({ selectedCategory }) => {
           onChange={(e) => setCurrentInput(e.target.value)}
           onKeyPress={(e) => {
             if (e.key === 'Enter' && !e.shiftKey && !isLoading) {
-              sendMessage(); // Send message when Enter is pressed
-              e.preventDefault(); // Prevent new lines
+              sendMessage();
+              e.preventDefault();
             }
           }}
           className="chat-input"
