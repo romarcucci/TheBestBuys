@@ -2,6 +2,7 @@
 $tile-spacing: 10px; // Spacing between tiles
 $tile-border-radius: 10px; // Border radius for tiles
 $bot-bg-color: #607d8b; // Background color for the bot's message
+$bot-pp-bg-color: white; // Background color for the bot's message
 $text-color: white; // Default text color for bot messages
 $recommendation-bg-color: white;
 $tile-width: 150px; // Fixed width for the tiles
@@ -30,6 +31,7 @@ $border-radius: 15px;
       width: 30px;
       height: 30px;
       margin-right: 10px; // Space between profile picture and message content
+      background-color: $bot-pp-bg-color;
     }
 
     .message-content {

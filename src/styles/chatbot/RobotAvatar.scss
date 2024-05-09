@@ -1,0 +1,31 @@
+// File: src/styles/RobotAvatar.scss
+$avatar-size: 80px; // Size of the avatar
+$avatar-bg-color: #fff; // Background color
+$avatar-label-font-family: Arial, sans-serif; // Font for the label
+$avatar-label-font-weight: bold; // Font weight for the label
+$avatar-label-color: #fff; // White text color
+$avatar-label-margin-top: 10px; // Space between avatar and label
+
+.robot-avatar {
+  display: flex;
+  flex-direction: column; // Stack image and label vertically
+  align-items: center; // Center elements horizontally
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+.robot-image {
+  width: $avatar-size;
+  height: $avatar-size;
+  border-radius: 50%; // Circular shape
+  padding: 10px; // Padding around the image
+  background-color: $avatar-bg-color; // Background color
+}
+
+.robot-label {
+  font-family: $avatar-label-font-family; // Set font to Arial
+  font-weight: $avatar-label-font-weight; // Set font weight to bold
+  color: $avatar-label-color; // White text color
+  margin-top: $avatar-label-margin-top; // Space between avatar and label
+  text-align: center; // Center the label text
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/LoadingSpinner.scss'; // Import the associated styles
+import '../../styles/chatbot/LoadingSpinner.scss'; // Import the associated styles
 
 const LoadingWave = () => {
   return (

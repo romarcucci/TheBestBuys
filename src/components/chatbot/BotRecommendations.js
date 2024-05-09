@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/BotRecommendations.scss'; // SCSS styling for this component
+import '../../styles/chatbot/BotRecommendations.scss'; // SCSS styling for this component
 
 const BotRecommendations = ({ links }) => {
   return (

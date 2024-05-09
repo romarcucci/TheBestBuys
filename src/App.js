@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import ProductGrid from './components/ProductGrid';
-import ChatbotInterface from './components/ChatbotInterface';
+import ChatbotInterface from './components/chatbot/ChatbotInterface';
 
 const App = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);

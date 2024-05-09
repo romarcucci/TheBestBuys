@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import BotMessage from './BotMessage';
 import BotRecommendations from './BotRecommendations';
+import RobotAvatar from './RobotAvatar';
 import LoadingSpinner from './LoadingSpinner'; // Import the LoadingSpinner component
 import { FaPaperPlane } from 'react-icons/fa';
-import '../styles/ChatbotInterface.scss';
+import '../../styles/chatbot/ChatbotInterface.scss';
 
 const ChatbotInterface = ({ selectedCategory }) => {
   const [chatLog, setChatLog] = useState([]);
@@ -21,7 +22,7 @@ const ChatbotInterface = ({ selectedCategory }) => {
 
   useEffect(() => {
     if (selectedCategory) {
-      const initialMessage = `Can you describe shortly what kind of ${selectedCategory} you're looking for?`;
+      const initialMessage = `Hello, can you describe shortly what kind of ${selectedCategory} you're looking for?`;
       setChatLog([{ type: 'bot', content: initialMessage }]);
     }
   }, [selectedCategory]);
@@ -87,7 +88,8 @@ const ChatbotInterface = ({ selectedCategory }) => {
 
   return (
     <div className="chatbot-interface">
-      <div className="chat-log" ref={chatLogRef}>
+      <div className="chat-log" ref={chatLogRef}> 
+        <RobotAvatar /> {/* Add the RobotAvatar component here */}
         {chatLog.map((msg, index) => {
           if (msg.type === 'bot') {
             return (
