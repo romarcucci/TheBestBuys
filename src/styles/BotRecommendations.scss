@@ -1,0 +1,31 @@
+// Common styling for the bot message component
+$tile-spacing: 10px; // Spacing between tiles
+$tile-border-radius: 10px; // Border radius for tiles
+$bot-bg-color: #607d8b; // Background color for the bot's message
+$text-color: white; // Default text color for bot messages
+$recommendation-bg-color: white;
+$tile-width: 150px; // Fixed width for the tiles
+$tile-hover-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1); // Shadow on hover
+$profile-picture-size: 30px; // Size for the profile picture
+$border-radius: 15px;
+
+@keyframes slide-in-from-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.chat-msg {
+  display: flex;
+  flex-direction: column; /* Ensure `message-row` and `recommendations-row` are vertical */
+  padding: 10px;
+
+  &.bot-recommendation {
+    animation: slide-in-from-left 0.3s forwards;
+  }
+}
