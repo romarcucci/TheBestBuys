@@ -29,8 +29,8 @@ $breakpoint-tablet: 768px; // Width for tablet responsiveness
   border-radius: 15px;
   max-width: 60%; // Restrict max width to 60%
   margin: 0 auto; // Center horizontally
-  height: 50vh;
-
+  height: 80vh;
+  margin-top: 5vh;
   // Adjust layout based on device size
   @media (max-width: $breakpoint-tablet) {
     max-width: 80%; // Expand to 80% on tablets

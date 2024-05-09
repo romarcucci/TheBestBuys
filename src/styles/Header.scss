@@ -13,6 +13,7 @@ $logo-text-transform: uppercase; // Text transformation for the logo
   align-items: center; // Center content vertically
   padding: $header-padding; // Padding around the header
   background-color: $header-bg-color; // Background color for the header
+  height: 10vh;
 }
 
 .logo {

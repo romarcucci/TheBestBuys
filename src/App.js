@@ -14,7 +14,7 @@ const App = () => {
   return (
     <div className="app">
       <Header />
-      <HeroSection />
+      {!selectedCategory && <HeroSection />}
       {!selectedCategory && (
         <ProductGrid onCategorySelect={handleCategorySelect} />
       )}

@@ -7,7 +7,7 @@ import LoadingSpinner from './LoadingSpinner'; // Import the LoadingSpinner comp
 import '../../styles/chatbot/ChatbotInterface.scss';
 import ChatInput from './ChatInput';
 
-const ChatbotInterface = ({ selectedCategory }) => {
+const ChatbotInterface = ({ selectedCategory, isChatbotExpanded }) => {
   const [chatLog, setChatLog] = useState([]);
   const [currentInput, setCurrentInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -63,8 +63,8 @@ const ChatbotInterface = ({ selectedCategory }) => {
             // recommendations: recommendations,
             recommendations: [
               '<a class="affiliated-link" href="https://amzn.eu/d/8gqaqCV"><div class="image-affiliated-link"><img alt="Apple iPhone 15 (128 Go) - Noir" src="https://m.media-amazon.com/images/I/61eEYLATF9L._AC_SY110_.jpg" /></div><span class="test-affiliated-link">Apple iPhone 15 (128 Go) - Noir</span></a>',
-
-              // '<a class="affiliated-link" href="https://amzn.eu/d/8gqaqCV"><div class="image-affiliated-link"><img alt="Apple iPhone 15 (128 Go) - Noir" src="https://m.media-amazon.com/images/I/61eEYLATF9L._AC_SY110_.jpg" /></div><span class="test-affiliated-link">Apple iPhone 15 (128 Go) - Noir</span></a>',
+              '<a class="affiliated-link" href="https://amzn.eu/d/8gqaqCV"><div class="image-affiliated-link"><img alt="Apple iPhone 15 (128 Go) - Noir" src="https://m.media-amazon.com/images/I/61eEYLATF9L._AC_SY110_.jpg" /></div><span class="test-affiliated-link">Apple iPhone 15 (128 Go) - Noir</span></a>',
+              '<a class="affiliated-link" href="https://amzn.eu/d/8gqaqCV"><div class="image-affiliated-link"><img alt="Apple iPhone 15 (128 Go) - Noir" src="https://m.media-amazon.com/images/I/61eEYLATF9L._AC_SY110_.jpg" /></div><span class="test-affiliated-link">Apple iPhone 15 (128 Go) - Noir</span></a>',
             ],
           },
         ]); // Add bot response
@@ -87,7 +87,7 @@ const ChatbotInterface = ({ selectedCategory }) => {
   };
 
   return (
-    <div className="chatbot-interface">
+    <div className={`chatbot-interface ${isChatbotExpanded ? 'expanded' : ''}`}>
       <div className="chat-log" ref={chatLogRef}>
         <RobotAvatar /> {/* Add the RobotAvatar component here */}
         {chatLog.map((msg, index) => {

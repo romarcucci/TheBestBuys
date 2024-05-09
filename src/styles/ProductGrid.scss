@@ -26,6 +26,7 @@ $breakpoint-desktop: 1024px;
   flex-wrap: wrap; // Allow wrapping of items
   justify-content: center; // Center horizontally
   gap: $product-margin; // Space between categories
+  height: 40vh;
 
   // Default to desktop layout
   @include grid-width(60%); // Grid is 60% of parent

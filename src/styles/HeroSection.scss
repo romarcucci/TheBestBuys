@@ -8,27 +8,30 @@ $hero-text-transform: uppercase; // Transform text to uppercase
 
 // Style for the hero section
 .hero-section {
+  height: 40vh;
+  padding: 5vh;
   text-align: center; // Align text to the center
   padding: $hero-padding; // Padding around the section
-}
 
-// Style for the hero message
-.hero-message {
-  display: inline-block; // Display inline with other content
-  padding: 10px; // Padding around the message
-  background-color: $hero-bg-color; // Background color for the message
-  color: $hero-text-color; // Text color
-  border-radius: $hero-border-radius; // Rounded corners
-  text-align: center; // Align text to the center
-  cursor: default; // Default cursor (non-clickable)
-  margin-bottom: 10px; // Margin below the message
-  font-family: $hero-font-family; // Font for the text
-  text-transform: $hero-text-transform; // Convert text to uppercase
-}
+  // Style for the hero message
+  .hero-message {
+    display: inline-block; // Display inline with other content
+    padding: 10px; // Padding around the message
+    background-color: $hero-bg-color; // Background color for the message
+    color: $hero-text-color; // Text color
+    border-radius: $hero-border-radius; // Rounded corners
+    text-align: center; // Align text to the center
+    cursor: default; // Default cursor (non-clickable)
+    margin-bottom: 10px; // Margin below the message
+    font-family: $hero-font-family; // Font for the text
+    text-transform: $hero-text-transform; // Convert text to uppercase
+  }
 
-// Style for the hero image
-.hero-image {
-  display: block; // Display as a block element
-  margin: 0 auto; // Center horizontally
-  margin-top: 10px; // Margin at the top for spacing between message and image
+  // Style for the hero image
+  .hero-image {
+    height: 30vh;
+    display: block; // Display as a block element
+    margin: 0 auto; // Center horizontally
+    margin-top: 10px; // Margin at the top for spacing between message and image
+  }
 }
