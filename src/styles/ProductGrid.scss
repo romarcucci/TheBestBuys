@@ -1,4 +1,5 @@
 // Common style variables for product-related components
+$product-grid-margin-bottom: 5vh !important;
 $product-padding: 20px; /* Padding for individual product categories */
 $product-margin: 10px; /* Margin between product items in the grid */
 $product-transition: 0.3s; /* Transition duration for hover effects */
@@ -25,6 +26,7 @@ $breakpoint-desktop: 1024px; /* Max width for desktop layout */
   flex-wrap: wrap; /* Allow items to wrap to the next row */
   justify-content: center; /* Center horizontally */
   gap: $product-margin; /* Set spacing between grid items */
+  margin-bottom: $product-grid-margin-bottom;
 
   @include grid-width(60%); /* Default grid width for desktop layouts */
 
