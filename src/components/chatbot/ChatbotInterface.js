@@ -7,16 +7,18 @@ import BotRecommendations from './BotRecommendations';
 import ChatInput from './ChatInput';
 import LoadingSpinner from './LoadingSpinner';
 import RobotAvatar from './RobotAvatar';
+import ScrollBackButton from './ScrollBackButton';
 
 // Styles
 import '../../styles/chatbot/ChatbotInterface.scss';
 
 // Main Chatbot Interface Component
-const ChatbotInterface = ({ selectedCategory, isChatbotExpanded }) => {
+const ChatbotInterface = ({ selectedCategory }) => {
   // State Variables
   const [chatLog, setChatLog] = useState([]); // The log of all chat messages
   const [currentInput, setCurrentInput] = useState(''); // Current text input from the user
   const [isLoading, setIsLoading] = useState(false); // Loading state for async operations
+  const [showScrollBackButton, setShowScrollBackButton] = useState(false);
 
   // Ref to keep track of the chat log for auto-scrolling
   const chatLogRef = useRef(null); // Reference to the chat log container
@@ -35,6 +37,24 @@ const ChatbotInterface = ({ selectedCategory, isChatbotExpanded }) => {
       setChatLog([{ type: 'bot', content: initialMessage }]); // Set initial message in chat log
     }
   }, [selectedCategory]); // Effect depends on selectedCategory
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const element = chatLogRef.current;
+      const tolerance = 300; // Small tolerance to account for minor discrepancies
+      const isAtBottom =
+        element.scrollHeight - element.scrollTop - element.clientHeight <=
+        tolerance;
+
+      setShowScrollBackButton(!isAtBottom);
+    };
+
+    const currentChatLog = chatLogRef.current;
+    if (currentChatLog) {
+      currentChatLog.addEventListener('scroll', handleScroll);
+      return () => currentChatLog.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
 
   // Function to send a user message to the server and handle the response
   const sendMessage = async () => {
@@ -100,7 +120,7 @@ const ChatbotInterface = ({ selectedCategory, isChatbotExpanded }) => {
   };
 
   return (
-    <div className={`chatbot-interface ${isChatbotExpanded ? 'expanded' : ''}`}>
+    <div className="chatbot-interface">
       {/* Conditional class based on expansion state */}
       <div className="chat-log" ref={chatLogRef}>
         {/* Chat log container with auto-scroll reference */}
@@ -137,6 +157,16 @@ const ChatbotInterface = ({ selectedCategory, isChatbotExpanded }) => {
             </div>
           );
         })}
+        {showScrollBackButton && (
+          <ScrollBackButton
+            onScrollToBottom={() =>
+              chatLogRef.current.scrollTo({
+                top: chatLogRef.current.scrollHeight,
+                behavior: 'smooth',
+              })
+            }
+          />
+        )}
       </div>
       <ChatInput
         currentInput={

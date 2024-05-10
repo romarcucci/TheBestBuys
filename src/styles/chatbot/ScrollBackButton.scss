@@ -1,0 +1,32 @@
+.scroll-back-button {
+  position: absolute; // Fixed positioning to keep it at the same spot during scrolling
+  top: 88vh;
+  left: 50%; // Centered horizontally
+  transform: translateX(-50%); // Centers the button horizontally
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.7
+  ); // Semi-transparent black background for contrast
+  border: none; // No border
+  border-radius: 50%; // Circular shape
+  width: 40px; // Circle diameter
+  height: 40px; // Circle diameter
+  display: flex; // Flexbox to center SVG
+  justify-content: center; // Centers SVG horizontally
+  align-items: center; // Centers SVG vertically
+  color: white; // White color for the arrow
+  cursor: pointer; // Pointer cursor on hover
+  z-index: 1000; // High z-index to ensure it overlaps everything else
+  transition: background-color 0.3s; // Smooth transition on hover
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.9); // Darker shade on hover
+  }
+
+  svg {
+    width: 24px; // Set SVG width
+    height: 24px; // Set SVG height
+  }
+}
