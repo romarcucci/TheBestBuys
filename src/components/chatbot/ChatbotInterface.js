@@ -8,6 +8,7 @@ import ChatInput from './ChatInput';
 import LoadingSpinner from './LoadingSpinner';
 import RobotAvatar from './RobotAvatar';
 import ScrollBackButton from './ScrollBackButton';
+import UserSuggestion from './UserSuggestion';
 
 // Styles
 import '../../styles/chatbot/ChatbotInterface.scss';
@@ -19,6 +20,7 @@ const ChatbotInterface = ({ selectedCategory }) => {
   const [currentInput, setCurrentInput] = useState(''); // Current text input from the user
   const [isLoading, setIsLoading] = useState(false); // Loading state for async operations
   const [showScrollBackButton, setShowScrollBackButton] = useState(false);
+  const [suggestions, setSuggestions] = useState([]);
 
   // Ref to keep track of the chat log for auto-scrolling
   const chatLogRef = useRef(null); // Reference to the chat log container
@@ -57,8 +59,10 @@ const ChatbotInterface = ({ selectedCategory }) => {
   }, []);
 
   // Function to send a user message to the server and handle the response
-  const sendMessage = async () => {
-    if (currentInput.trim() === '') {
+  const sendMessage = async (message) => {
+    const userMessage = message || currentInput.trim(); // Use passed message or currentInput
+
+    if (userMessage === '') {
       return; // Don't send empty messages
     }
 
@@ -66,11 +70,10 @@ const ChatbotInterface = ({ selectedCategory }) => {
 
     setChatLog((prev) => [
       ...prev,
-      { type: 'user', content: currentInput }, // Add user message to chat log
+      { type: 'user', content: userMessage }, // Add user message to chat log
       { type: 'loading', content: '' }, // Add loading spinner to indicate a process
     ]);
 
-    const userMessage = currentInput; // Save current user input
     setCurrentInput(''); // Clear the input field
 
     try {
@@ -88,17 +91,24 @@ const ChatbotInterface = ({ selectedCategory }) => {
         response.data.message &&
         typeof response.data.message.content === 'string'
       ) {
+        const botMessage = response.data.message.content;
+        // const suggestionResponse = response.data.suggestions || [];
+        const suggestionResponse = response.data.suggestions || ['Yes', 'No'];
+        const recommendations = response.data.message.recommendations || [];
+        // const recommendations = response.data.message.recommendations || [
+        //   '<a class="affiliated-link" href="https://amzn.eu/d/8gqaqCV"><div class="image-affiliated-link"><img alt="Apple iPhone 15 (128 Go) - Noir" src="https://m.media-amazon.com/images/I/61eEYLATF9L._AC_SY110_.jpg" /></div><span class="test-affiliated-link">Apple iPhone 15 (128 Go) - Noir</span></a>',
+        //   '<a class="affiliated-link" href="https://amzn.eu/d/8gqaqCV"><div class="image-affiliated-link"><img alt="Apple iPhone 15 (128 Go) - Noir" src="https://m.media-amazon.com/images/I/61eEYLATF9L._AC_SY110_.jpg" /></div><span class="test-affiliated-link">Apple iPhone 15 (128 Go) - Noir</span></a>',
+        //   '<a class="affiliated-link" href="https://amzn.eu/d/8gqaqCV"><div class="image-affiliated-link"><img alt="Apple iPhone 15 (128 Go) - Noir" src="https://m.media-amazon.com/images/I/61eEYLATF9L._AC_SY110_.jpg" /></div><span class="test-affiliated-link">Apple iPhone 15 (128 Go) - Noir</span></a>',
+        // ];
+
+        setSuggestions(suggestionResponse);
+
         setChatLog((prev) => [
           ...prev,
           {
             type: 'bot', // Indicate this is a bot message
-            content: response.data.message.content, // Bot's message content
-            // recommendations: response.data.message.recommendations || [], // Add recommendations if any
-            recommendations: [
-              '<a class="affiliated-link" href="https://amzn.eu/d/8gqaqCV"><div class="image-affiliated-link"><img alt="Apple iPhone 15 (128 Go) - Noir" src="https://m.media-amazon.com/images/I/61eEYLATF9L._AC_SY110_.jpg" /></div><span class="test-affiliated-link">Apple iPhone 15 (128 Go) - Noir</span></a>',
-              '<a class="affiliated-link" href="https://amzn.eu/d/8gqaqCV"><div class="image-affiliated-link"><img alt="Apple iPhone 15 (128 Go) - Noir" src="https://m.media-amazon.com/images/I/61eEYLATF9L._AC_SY110_.jpg" /></div><span class="test-affiliated-link">Apple iPhone 15 (128 Go) - Noir</span></a>',
-              '<a class="affiliated-link" href="https://amzn.eu/d/8gqaqCV"><div class="image-affiliated-link"><img alt="Apple iPhone 15 (128 Go) - Noir" src="https://m.media-amazon.com/images/I/61eEYLATF9L._AC_SY110_.jpg" /></div><span class="test-affiliated-link">Apple iPhone 15 (128 Go) - Noir</span></a>',
-            ],
+            content: botMessage, // Bot's message content
+            recommendations: recommendations,
           },
         ]);
       } else {
@@ -117,6 +127,19 @@ const ChatbotInterface = ({ selectedCategory }) => {
     } finally {
       setIsLoading(false); // Reset loading state
     }
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setSuggestions((prevSuggestions) =>
+      prevSuggestions.map((s) =>
+        s === suggestion ? { content: s, slideOut: true } : s
+      )
+    );
+
+    setTimeout(() => {
+      sendMessage(suggestion); // Pass the suggestion directly to sendMessage
+      setSuggestions([]); // Clear suggestions after delay for animation
+    }, 300); // 300ms to match SCSS animation
   };
 
   return (
@@ -157,6 +180,12 @@ const ChatbotInterface = ({ selectedCategory }) => {
             </div>
           );
         })}
+        <UserSuggestion
+          suggestions={suggestions.map((s) =>
+            typeof s === 'string' ? s : s.content
+          )}
+          onSuggestionClick={handleSuggestionClick}
+        />
         {showScrollBackButton && (
           <ScrollBackButton
             onScrollToBottom={() =>
@@ -169,12 +198,11 @@ const ChatbotInterface = ({ selectedCategory }) => {
         )}
       </div>
       <ChatInput
-        currentInput={
-          currentInput
-        } /* Pass current user input to the input component */
-        setCurrentInput={setCurrentInput} /* Set the current user input */
-        sendMessage={sendMessage} /* Pass the send message function */
-        isLoading={isLoading} /* Indicate if loading is active */
+        currentInput={currentInput}
+        setCurrentInput={setCurrentInput}
+        sendMessage={() => sendMessage()} // Call sendMessage without argument
+        isLoading={isLoading}
+        disabled={suggestions.length > 0} // Disable if there are suggestions
       />
     </div>
   );

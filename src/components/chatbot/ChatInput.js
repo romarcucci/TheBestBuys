@@ -12,37 +12,42 @@ const ChatInput = ({
   setCurrentInput,
   sendMessage,
   isLoading,
+  disabled,
 }) => {
+  // Handle input changes and prevent interaction if disabled
+  const handleInputChange = (e) => {
+    if (!disabled) {
+      setCurrentInput(e.target.value);
+    }
+  };
+
+  // Handle key presses (send message on Enter, prevent new line)
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey && !isLoading && !disabled) {
+      sendMessage(); // Only send if not disabled and not loading
+      e.preventDefault(); // Prevent default Enter behavior
+    }
+  };
+
   return (
     <div className="input-container">
-      {' '}
-      {/* Container for chat input and send button */}
       <textarea
-        rows="1" /* Use a single row by default, expands with content */
-        value={currentInput} /* Current text in the chat input */
-        onChange={(e) =>
-          setCurrentInput(e.target.value)
-        } /* Update input on change */
-        onKeyPress={(e) => {
-          // If the Enter key is pressed without Shift and not loading, send the message
-          if (e.key === 'Enter' && !e.shiftKey && !isLoading) {
-            sendMessage(); // Trigger sending the message
-            e.preventDefault(); // Prevent new line from being added
-          }
-        }}
-        className="chat-input" /* Apply styles for the chat input */
-        placeholder="Message Robot Advisor" /* Placeholder text for guidance */
+        rows="1" // Default row count
+        value={currentInput}
+        onChange={handleInputChange} // Only update if not disabled
+        onKeyPress={handleKeyPress} // Only send if not disabled
+        className={`chat-input ${disabled ? 'disabled' : ''}`} // Apply disabled styling
+        placeholder="Type your message..." // Placeholder text
+        disabled={disabled || isLoading} // Disable when required
       />
       <div
-        className={`send-button ${isLoading ? 'disabled' : ''}`} /* Apply styles and disabled class if loading */
-        onClick={
-          !isLoading ? sendMessage : null
-        } /* Only enable click if not loading */
+        className={`send-button ${isLoading || disabled ? 'disabled' : ''}`} // Disable if loading or disabled
+        onClick={!isLoading && !disabled ? sendMessage : null} // Only allow click if not loading or disabled
       >
-        <FaPaperPlane /> {/* Icon for sending messages */}
+        <FaPaperPlane />
       </div>
     </div>
   );
 };
 
-export default ChatInput; /* Export the ChatInput component */
+export default ChatInput; /* Export component for use in other parts of the application */

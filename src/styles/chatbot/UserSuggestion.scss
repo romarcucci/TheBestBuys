@@ -1,0 +1,47 @@
+// Primary color for the suggestions
+$primary-color: #0084ff;
+
+// Animation duration
+$animation-duration: 0.3s;
+
+// Border radius for the suggestions
+$border-radius: 15px;
+
+// Keyframe animation for slide-in effect
+@keyframes slide-in-from-top {
+  from {
+    transform: translateY(-100%); // Start from the top
+    opacity: 0; // Completely transparent
+  }
+  to {
+    transform: translateY(0); // Slide into original position
+    opacity: 1; // Fully visible
+  }
+}
+
+// Container for user suggestions
+.user-suggestion {
+  margin-left: 25% !important; // Offset from the left edge
+  max-width: 75%; // Limit maximum width to avoid overflow
+  display: flex;
+  flex-direction: column; // Arrange suggestions in a column
+  align-items: flex-end; // Align suggestions to the right
+  gap: 8px; // Spacing between suggestions
+  margin: 8px 0; // Margin for the container
+  position: relative; // Position relative to the parent element
+
+  // Individual suggestion styling
+  .suggestion {
+    width: fit-content; // Adjust width to fit content
+    padding: 10px; // Padding around the suggestion
+    border: 2px solid $primary-color; // Border color
+    border-radius: $border-radius; // Apply consistent border radius
+    cursor: pointer; // Change cursor to indicate clickability
+    animation: slide-in-from-top $animation-duration forwards; // Apply slide-in animation
+    color: white; // Default text color
+
+    &:hover {
+      background-color: $primary-color; // Change background color on hover
+    }
+  }
+}
