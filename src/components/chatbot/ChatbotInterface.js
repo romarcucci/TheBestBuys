@@ -97,7 +97,7 @@ const ChatbotInterface = ({ selectedCategory }) => {
         response.data.message &&
         typeof response.data.message.content === 'string'
       ) {
-        const botMessage = response.data.message.content;
+        const botMessage = response.data.message;
         const suggestionResponse = response.data.suggestions || [];
         // const suggestionResponse = response.data.suggestions || ['Yes', 'No'];
         const recommendations = response.data.message.recommendations || [];
