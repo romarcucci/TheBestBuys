@@ -35,11 +35,23 @@ const ChatbotInterface = ({ selectedCategory }) => {
 
   // Effect to add an initial message when a category is selected
   useEffect(() => {
-    if (selectedCategory) {
-      const initialMessage = `Hello, can you describe shortly what kind of ${selectedCategory} you're looking for?`; // Initial bot message
-      setChatLog([{ type: 'bot', content: initialMessage }]); // Set initial message in chat log
-    }
-  }, [selectedCategory]); // Effect depends on selectedCategory
+    const initialMessage = `Hello, what kind of product are you looking for ?`; // Initial bot message
+    setChatLog([{ type: 'bot', content: initialMessage }]); // Set initial message in chat log
+    setSuggestions([
+      'Smartphone 📱',
+      'TV 📺',
+      'Laptop 💻',
+      'Smartwatch ⏰',
+      'Headphones 🎧',
+      'Earbuds 🎧',
+      'Camera 📷',
+      'Wireless speaker 🔊',
+      'Soundbar 🔊',
+      'Video projector 📽',
+      'Monitor 🖥',
+      'Video game console 🎮',
+    ]);
+  }, []); // Effect depends on selectedCategory
 
   useEffect(() => {
     // Generate a random userId (you can replace this with your own logic)

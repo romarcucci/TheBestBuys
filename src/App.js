@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+// import React, { useState } from 'react';
 
 // Components
 import Header from './components/Header';
-import HeroSection from './components/HeroSection';
-import ProductGrid from './components/ProductGrid';
+// import HeroSection from './components/HeroSection';
+// import ProductGrid from './components/ProductGrid';
 import ChatbotInterface from './components/chatbot/ChatbotInterface';
 import Footer from './components/Footer';
 
@@ -15,12 +16,12 @@ import './App.scss';
 
 const App = () => {
   // State to keep track of the selected category
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  // const [selectedCategory, setSelectedCategory] = useState(null);
 
   // Function to handle category selection and update the state
-  const handleCategorySelect = (category) => {
-    setSelectedCategory(category); // Updates the selected category
-  };
+  // const handleCategorySelect = (category) => {
+  //   setSelectedCategory(category); // Updates the selected category
+  // };
 
   return (
     <div className="app">
@@ -35,15 +36,16 @@ const App = () => {
       />
       <div className="content">
         {/* If no category is selected, render the Hero section */}
-        {!selectedCategory && <HeroSection />}{' '}
+        {/* {!selectedCategory && <HeroSection />} */}
         {/* If no category is selected, render the ProductGrid with a callback for category selection */}
-        {!selectedCategory && (
+        {/* {!selectedCategory && (
           <ProductGrid onCategorySelect={handleCategorySelect} />
-        )}
+        )} */}
         {/* If a category is selected, render the ChatbotInterface with the selected category */}
-        {selectedCategory && (
+        {/* {selectedCategory && (
           <ChatbotInterface selectedCategory={selectedCategory} />
-        )}
+        )} */}
+        <ChatbotInterface />
       </div>
       <Footer />
     </div>
