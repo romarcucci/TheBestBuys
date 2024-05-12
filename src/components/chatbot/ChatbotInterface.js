@@ -48,10 +48,10 @@ const ChatbotInterface = ({ selectedCategory }) => {
 
     const handleScroll = () => {
       const element = chatLogRef.current;
-      const tolerance = 300; // Small tolerance to account for minor discrepancies
+      const offset = 300; // Small offset to account for minor discrepancies
       const isAtBottom =
         element.scrollHeight - element.scrollTop - element.clientHeight <=
-        tolerance;
+        offset;
 
       setShowScrollBackButton(!isAtBottom);
     };
