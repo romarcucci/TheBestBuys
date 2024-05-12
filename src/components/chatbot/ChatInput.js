@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 // Icons
 import { FaPaperPlane } from 'react-icons/fa';
@@ -14,6 +14,19 @@ const ChatInput = ({
   isLoading,
   disabled,
 }) => {
+  const chatInputRef = useRef(null); // Reference to the chat log container
+
+  // Effect to scroll to the bottom of the chat log when new messages are added
+  useEffect(() => {
+    if (!isLoading) {
+      if (chatInputRef) {
+        if (chatInputRef.current) {
+          chatInputRef.current.querySelector('textarea').focus();
+        }
+      }
+    }
+  }, [isLoading]); // Effect depends on chatLog
+
   // Handle input changes and prevent interaction if disabled
   const handleInputChange = (e) => {
     if (!disabled) {
@@ -30,7 +43,7 @@ const ChatInput = ({
   };
 
   return (
-    <div className="input-container">
+    <div className="input-container" ref={chatInputRef}>
       <textarea
         rows="1" // Default row count
         value={currentInput}
