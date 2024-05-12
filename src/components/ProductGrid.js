@@ -23,7 +23,7 @@ import '../styles/ProductGrid.scss';
 const ProductGrid = ({ onCategorySelect }) => {
   // Array of product categories with labels and corresponding icons
   const categories = [
-    { label: 'Smartphones', icon: <FaMobileAlt /> },
+    { label: 'Smartphone', icon: <FaMobileAlt /> },
     { label: 'TV', icon: <FaTv /> },
     { label: 'Laptop', icon: <FaLaptop /> },
     { label: 'Smartwatch', icon: <FaRegClock /> },
