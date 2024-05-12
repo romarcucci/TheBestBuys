@@ -21,6 +21,7 @@ const ChatbotInterface = ({ selectedCategory }) => {
   const [isLoading, setIsLoading] = useState(false); // Loading state for async operations
   const [showScrollBackButton, setShowScrollBackButton] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
+  const [userId, setUserId] = useState('');
 
   // Ref to keep track of the chat log for auto-scrolling
   const chatLogRef = useRef(null); // Reference to the chat log container
@@ -41,6 +42,10 @@ const ChatbotInterface = ({ selectedCategory }) => {
   }, [selectedCategory]); // Effect depends on selectedCategory
 
   useEffect(() => {
+    // Generate a random userId (you can replace this with your own logic)
+    const generatedUserId = Math.random().toString(36).substr(2, 9);
+    setUserId(generatedUserId);
+
     const handleScroll = () => {
       const element = chatLogRef.current;
       const tolerance = 300; // Small tolerance to account for minor discrepancies
@@ -80,6 +85,7 @@ const ChatbotInterface = ({ selectedCategory }) => {
       // Send the user message to the server
       const response = await axios.post('http://localhost:3000/chat', {
         message: userMessage,
+        userId: userId,
       });
 
       // Remove the loading spinner after receiving the response
@@ -92,8 +98,8 @@ const ChatbotInterface = ({ selectedCategory }) => {
         typeof response.data.message.content === 'string'
       ) {
         const botMessage = response.data.message.content;
-        // const suggestionResponse = response.data.suggestions || [];
-        const suggestionResponse = response.data.suggestions || ['Yes', 'No'];
+        const suggestionResponse = response.data.suggestions || [];
+        // const suggestionResponse = response.data.suggestions || ['Yes', 'No'];
         const recommendations = response.data.message.recommendations || [];
         // const recommendations = response.data.message.recommendations || [
         //   '<a class="affiliated-link" href="https://amzn.eu/d/8gqaqCV"><div class="image-affiliated-link"><img alt="Apple iPhone 15 (128 Go) - Noir" src="https://m.media-amazon.com/images/I/61eEYLATF9L._AC_SY110_.jpg" /></div><span class="test-affiliated-link">Apple iPhone 15 (128 Go) - Noir</span></a>',
