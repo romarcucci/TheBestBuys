@@ -49,13 +49,17 @@ const ChatInput = ({
         value={currentInput}
         onChange={handleInputChange} // Only update if not disabled
         onKeyPress={handleKeyPress} // Only send if not disabled
-        className={`chat-input ${disabled ? 'disabled' : ''}`} // Apply disabled styling
+        className={`chat-input ${isLoading ? 'disabled' : ''}`} // Apply disabled styling
+        // className={`chat-input ${disabled ? 'disabled' : ''}`} // Apply disabled styling
         placeholder="Type your message..." // Placeholder text
-        disabled={disabled || isLoading} // Disable when required
+        disabled={isLoading} // Disable when required
+        // disabled={disabled || isLoading} // Disable when required
       />
       <div
-        className={`send-button ${isLoading || disabled ? 'disabled' : ''}`} // Disable if loading or disabled
-        onClick={!isLoading && !disabled ? sendMessage : null} // Only allow click if not loading or disabled
+        className={`send-button ${isLoading ? 'disabled' : ''}`} // Disable if loading or disabled
+        onClick={!isLoading ? sendMessage : null} // Only allow click if not loading or disabled
+        // className={`send-button ${isLoading || disabled ? 'disabled' : ''}`} // Disable if loading or disabled
+        // onClick={!isLoading && !disabled ? sendMessage : null} // Only allow click if not loading or disabled
       >
         <FaPaperPlane />
       </div>

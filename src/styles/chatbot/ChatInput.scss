@@ -1,4 +1,6 @@
 $primary-color: #0084ff; /* Primary color for consistent theming */
+$font-family: Arial, sans-serif; /* Default font family for the app */
+$font-size: 16px;
 
 // Styling for the container at the bottom of the chat interface
 .input-container {
@@ -17,6 +19,8 @@ $primary-color: #0084ff; /* Primary color for consistent theming */
     outline: none; /* Remove default outline when focused */
     resize: none; /* Disable resizing for consistency */
     scroll-behavior: smooth; /* Enable smooth scrolling in the input */
+    font-family: $font-family;
+    font-size: $font-size;
 
     /* Hide scrollbar for WebKit-based browsers (like Chrome, Safari) */
     &::-webkit-scrollbar {

@@ -72,6 +72,7 @@ const ChatbotInterface = ({ selectedCategory }) => {
     }
 
     setIsLoading(true); // Set loading state to true
+    setSuggestions([]); // Set loading state to true
 
     setChatLog((prev) => [
       ...prev,
@@ -208,7 +209,7 @@ const ChatbotInterface = ({ selectedCategory }) => {
         setCurrentInput={setCurrentInput}
         sendMessage={() => sendMessage()} // Call sendMessage without argument
         isLoading={isLoading}
-        disabled={suggestions.length > 0} // Disable if there are suggestions
+        // disabled={suggestions.length > 0} // Disable if there are suggestions
       />
     </div>
   );
