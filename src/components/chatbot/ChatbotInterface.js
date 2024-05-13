@@ -9,6 +9,7 @@ import LoadingSpinner from './LoadingSpinner';
 import RobotAvatar from './RobotAvatar';
 import ScrollBackButton from './ScrollBackButton';
 import UserSuggestion from './UserSuggestion';
+import CategoriesGrid from './CategoriesGrid';
 
 // Styles
 import '../../styles/chatbot/ChatbotInterface.scss';
@@ -37,20 +38,6 @@ const ChatbotInterface = ({ selectedCategory }) => {
   useEffect(() => {
     const initialMessage = `Hello, what kind of product are you looking for ?`; // Initial bot message
     setChatLog([{ type: 'bot', content: initialMessage }]); // Set initial message in chat log
-    setSuggestions([
-      'Smartphone 📱',
-      'TV 📺',
-      'Laptop 💻',
-      'Smartwatch ⏰',
-      'Headphones 🎧',
-      'Earbuds 🎧',
-      'Camera 📷',
-      'Wireless speaker 🔊',
-      'Soundbar 🔊',
-      'Video projector 📽',
-      'Monitor 🖥',
-      'Video game console 🎮',
-    ]);
   }, []); // Effect depends on selectedCategory
 
   useEffect(() => {
@@ -120,8 +107,6 @@ const ChatbotInterface = ({ selectedCategory }) => {
         //   '<a class="affiliated-link" href="https://amzn.eu/d/8gqaqCV"><div class="image-affiliated-link"><img alt="Apple iPhone 15 (128 Go) - Noir" src="https://m.media-amazon.com/images/I/61eEYLATF9L._AC_SY110_.jpg" /></div><span class="test-affiliated-link">Apple iPhone 15 (128 Go) - Noir</span></a>',
         // ];
 
-        setSuggestions(suggestionResponse);
-
         setChatLog((prev) => [
           ...prev,
           {
@@ -130,6 +115,10 @@ const ChatbotInterface = ({ selectedCategory }) => {
             recommendations: recommendations,
           },
         ]);
+
+        setTimeout(() => {
+          setSuggestions(suggestionResponse);
+        }, 1000);
       } else {
         throw new Error('Invalid response structure'); // Handle unexpected response
       }
