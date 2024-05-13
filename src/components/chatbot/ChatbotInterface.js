@@ -15,7 +15,7 @@ import CategoriesGrid from './CategoriesGrid';
 import '../../styles/chatbot/ChatbotInterface.scss';
 
 // Main Chatbot Interface Component
-const ChatbotInterface = ({ selectedCategory }) => {
+const ChatbotInterface = () => {
   // State Variables
   const [chatLog, setChatLog] = useState([]); // The log of all chat messages
   const [currentInput, setCurrentInput] = useState(''); // Current text input from the user
@@ -34,13 +34,10 @@ const ChatbotInterface = ({ selectedCategory }) => {
     }
   }, [chatLog]); // Effect depends on chatLog
 
-  // Effect to add an initial message when a category is selected
   useEffect(() => {
     const initialMessage = `Hello, what kind of product are you looking for ?`; // Initial bot message
     setChatLog([{ type: 'bot', content: initialMessage }]); // Set initial message in chat log
-  }, []); // Effect depends on selectedCategory
 
-  useEffect(() => {
     // Generate a random userId (you can replace this with your own logic)
     const generatedUserId = Math.random().toString(36).substr(2, 9);
     setUserId(generatedUserId);
@@ -62,25 +59,7 @@ const ChatbotInterface = ({ selectedCategory }) => {
     }
   }, []);
 
-  // Function to send a user message to the server and handle the response
-  const sendMessage = async (message) => {
-    const userMessage = message || currentInput.trim(); // Use passed message or currentInput
-
-    if (userMessage === '') {
-      return; // Don't send empty messages
-    }
-
-    setIsLoading(true); // Set loading state to true
-    setSuggestions([]); // Set loading state to true
-
-    setChatLog((prev) => [
-      ...prev,
-      { type: 'user', content: userMessage }, // Add user message to chat log
-      { type: 'loading', content: '' }, // Add loading spinner to indicate a process
-    ]);
-
-    setCurrentInput(''); // Clear the input field
-
+  const sendMessage = async (userMessage) => {
     try {
       // Send the user message to the server
       const response = await axios.post('http://localhost:3000/chat', {
@@ -98,8 +77,8 @@ const ChatbotInterface = ({ selectedCategory }) => {
         typeof response.data.message === 'string'
       ) {
         const botMessage = response.data.message;
-        const suggestionResponse = response.data.suggestions || [];
-        // const suggestionResponse = response.data.suggestions || ['Yes', 'No'];
+        // const suggestionResponse = response.data.suggestions || [];
+        const suggestionResponse = response.data.suggestions || ['Yes', 'No'];
         const recommendations = response.data.message.recommendations || [];
         // const recommendations = response.data.message.recommendations || [
         //   '<a class="affiliated-link" href="https://amzn.eu/d/8gqaqCV"><div class="image-affiliated-link"><img alt="Apple iPhone 15 (128 Go) - Noir" src="https://m.media-amazon.com/images/I/61eEYLATF9L._AC_SY110_.jpg" /></div><span class="test-affiliated-link">Apple iPhone 15 (128 Go) - Noir</span></a>',
@@ -118,7 +97,7 @@ const ChatbotInterface = ({ selectedCategory }) => {
 
         setTimeout(() => {
           setSuggestions(suggestionResponse);
-        }, 1000);
+        }, 300);
       } else {
         throw new Error('Invalid response structure'); // Handle unexpected response
       }
@@ -137,6 +116,28 @@ const ChatbotInterface = ({ selectedCategory }) => {
     }
   };
 
+  // Function to send a user message to the server and handle the response
+  const addUserMessage = (message) => {
+    const userMessage = message || currentInput.trim(); // Use passed message or currentInput
+
+    if (userMessage === '') {
+      return; // Don't send empty messages
+    }
+
+    setIsLoading(true); // Set loading state to true
+    setSuggestions([]); // Set loading state to true
+
+    setChatLog((prev) => [
+      ...prev,
+      { type: 'user', content: userMessage }, // Add user message to chat log
+      { type: 'loading', content: '' }, // Add loading spinner to indicate a process
+    ]);
+
+    setCurrentInput(''); // Clear the input field
+
+    sendMessage(userMessage);
+  };
+
   const handleSuggestionClick = (suggestion) => {
     setSuggestions((prevSuggestions) =>
       prevSuggestions.map((s) =>
@@ -145,9 +146,29 @@ const ChatbotInterface = ({ selectedCategory }) => {
     );
 
     setTimeout(() => {
-      sendMessage(suggestion); // Pass the suggestion directly to sendMessage
+      addUserMessage(suggestion); // Pass the suggestion directly to sendMessage
       setSuggestions([]); // Clear suggestions after delay for animation
     }, 300); // 300ms to match SCSS animation
+  };
+
+  const handleCategoryClick = (category) => {
+    const userMessage = category.label || currentInput.trim(); // Use passed message or currentInput
+
+    if (userMessage === '') {
+      return; // Don't send empty messages
+    }
+
+    setIsLoading(true); // Set loading state to true
+
+    setChatLog((prev) => [
+      ...prev,
+      { type: 'category', content: category }, // Add user message to chat log
+      { type: 'loading', content: '' }, // Add loading spinner to indicate a process
+    ]);
+
+    setCurrentInput(''); // Clear the input field
+
+    sendMessage(userMessage);
   };
 
   return (
@@ -171,20 +192,30 @@ const ChatbotInterface = ({ selectedCategory }) => {
             );
           }
 
+          if (msg.type === 'category') {
+            // Render loading spinner when loading
+            return (
+              <div
+                key={index} // Unique key for each category
+                className="chat-msg category" // Class for styling the product category
+              >
+                <div className="icon-wrapper">{msg.content.icon}</div>
+                <span className="category-label">{msg.content.label}</span>
+              </div>
+            );
+          }
           if (msg.type === 'loading') {
             // Render loading spinner when loading
             return (
               <div key={index} className="chat-msg bot">
-                {/* Loading spinner for bots */}
-                <LoadingSpinner /> {/* Display the loading spinner */}
+                <LoadingSpinner />
               </div>
             );
           }
 
           return (
             <div key={index} className={`chat-msg ${msg.type}`}>
-              {/* Render user messages */}
-              {msg.content} {/* Display the user message content */}
+              {msg.content}
             </div>
           );
         })}
@@ -194,6 +225,7 @@ const ChatbotInterface = ({ selectedCategory }) => {
           )}
           onSuggestionClick={handleSuggestionClick}
         />
+        <CategoriesGrid onCategoryClick={handleCategoryClick} />
         {showScrollBackButton && (
           <ScrollBackButton
             onScrollToBottom={() =>
@@ -208,7 +240,7 @@ const ChatbotInterface = ({ selectedCategory }) => {
       <ChatInput
         currentInput={currentInput}
         setCurrentInput={setCurrentInput}
-        sendMessage={() => sendMessage()} // Call sendMessage without argument
+        addUserMessage={() => addUserMessage()} // Call sendMessage without argument
         isLoading={isLoading}
         // disabled={suggestions.length > 0} // Disable if there are suggestions
       />

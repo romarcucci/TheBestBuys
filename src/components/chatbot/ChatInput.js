@@ -10,7 +10,7 @@ import '../../styles/chatbot/ChatInput.scss';
 const ChatInput = ({
   currentInput,
   setCurrentInput,
-  sendMessage,
+  addUserMessage,
   isLoading,
   disabled,
 }) => {
@@ -37,7 +37,7 @@ const ChatInput = ({
   // Handle key presses (send message on Enter, prevent new line)
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey && !isLoading && !disabled) {
-      sendMessage(); // Only send if not disabled and not loading
+      addUserMessage(); // Only send if not disabled and not loading
       e.preventDefault(); // Prevent default Enter behavior
     }
   };
@@ -51,15 +51,15 @@ const ChatInput = ({
         onKeyPress={handleKeyPress} // Only send if not disabled
         className={`chat-input ${isLoading ? 'disabled' : ''}`} // Apply disabled styling
         // className={`chat-input ${disabled ? 'disabled' : ''}`} // Apply disabled styling
-        placeholder="Type your message..." // Placeholder text
+        placeholder="Message Robot Advisor" // Placeholder text
         disabled={isLoading} // Disable when required
         // disabled={disabled || isLoading} // Disable when required
       />
       <div
         className={`send-button ${isLoading ? 'disabled' : ''}`} // Disable if loading or disabled
-        onClick={!isLoading ? sendMessage : null} // Only allow click if not loading or disabled
+        onClick={!isLoading ? addUserMessage : null} // Only allow click if not loading or disabled
         // className={`send-button ${isLoading || disabled ? 'disabled' : ''}`} // Disable if loading or disabled
-        // onClick={!isLoading && !disabled ? sendMessage : null} // Only allow click if not loading or disabled
+        // onClick={!isLoading && !disabled ? addUserMessage : null} // Only allow click if not loading or disabled
       >
         <FaPaperPlane />
       </div>
