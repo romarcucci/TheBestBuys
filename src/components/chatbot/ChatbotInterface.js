@@ -32,7 +32,7 @@ const ChatbotInterface = () => {
     if (chatLogRef.current) {
       chatLogRef.current.scrollTop = chatLogRef.current.scrollHeight; // Scroll to the latest message
     }
-  }, [chatLog]); // Effect depends on chatLog
+  }, [chatLog, suggestions]); // Effect depends on chatLog
 
   useEffect(() => {
     const initialMessage = `Hello, what kind of product are you looking for ?`; // Initial bot message
