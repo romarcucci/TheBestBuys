@@ -1,0 +1,75 @@
+@keyframes dotBlink {
+  0%,
+  20%,
+  100% {
+    /* Full opacity at the beginning, middle, and end */
+    opacity: 1;
+  }
+  50% {
+    /* Reduce opacity for a blinking effect */
+    opacity: 0.5;
+  }
+}
+
+@keyframes slide-in-from-top {
+  from {
+    transform: translateY(-100%); // Start from the top
+    opacity: 0; // Completely transparent
+  }
+  to {
+    transform: translateY(0); // Slide into original position
+    opacity: 1; // Fully visible
+  }
+}
+
+@keyframes slide-in-from-bottom {
+  from {
+    transform: translateY(100%); // Start from the bottom
+    opacity: 0; // Invisible
+  }
+  to {
+    transform: translateY(0); // No translation (original position)
+    opacity: 1; // Fully visible
+  }
+}
+
+@keyframes slide-in-from-left {
+  from {
+    transform: translateX(-100%); /* Start off-screen to the left */
+    opacity: 0; /* Initially invisible */
+  }
+  to {
+    transform: translateX(0); /* Move to original position */
+    opacity: 1; /* Fully visible */
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0.8); /* Initial scale is 0.1 */
+    opacity: 0; /* Initially invisible */
+  }
+  80% {
+    transform: scale(1.01); /* Scale up to 1.2 */
+    opacity: 1; /* Start becoming visible */
+  }
+  100% {
+    transform: scale(1); /* Scale back to original size */
+    opacity: 1; /* Fully visible */
+  }
+}
+
+@keyframes bounce-out {
+  0% {
+    transform: scale(1); /* Start at original size */
+    opacity: 1; /* Fully visible */
+  }
+  20% {
+    transform: scale(1.1); /* Scale up to 1.2 */
+    opacity: 1; /* Maintain visibility */
+  }
+  100% {
+    transform: scale(0.8); /* Scale down to 0.1 */
+    opacity: 0; /* Fully invisible */
+  }
+}

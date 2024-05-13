@@ -1,3 +1,5 @@
+@import '../../utils';
+
 // Define primary color variables for consistent styling
 $primary-color: #0084ff; // Purple color for primary elements
 $bot-bg-color: #607d8b; // Background color for bot messages
@@ -8,18 +10,6 @@ $border-radius: 15px; // General border radius for smooth edges
 // Define breakpoints for responsive design
 $breakpoint-smartphone: 480px; // Width for smartphone responsiveness
 $breakpoint-tablet: 768px; // Width for tablet responsiveness
-
-// Keyframe animations for slide-in effects (used for animations)
-@keyframes slide-in-from-bottom {
-  from {
-    transform: translateY(100%); // Start from the bottom
-    opacity: 0; // Invisible
-  }
-  to {
-    transform: translateY(0); // No translation (original position)
-    opacity: 1; // Fully visible
-  }
-}
 
 // Styling for the main chatbot interface
 .chatbot-interface {
@@ -73,7 +63,7 @@ $breakpoint-tablet: 768px; // Width for tablet responsiveness
       background-color: $primary-color; // User messages use the primary color
       color: $text-color; // White text color
       align-self: flex-end; // Align to the right
-      animation: slide-in-from-bottom 0.3s forwards; // Slide in from the bottom
+      animation: bounce-in 0.3s forwards;
     }
   }
 }

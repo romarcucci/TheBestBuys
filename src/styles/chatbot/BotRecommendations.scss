@@ -7,7 +7,7 @@ $text-color: #333; /* Default text color for labels */
 
 // Styling for Bot Recommendations (with slide-in animation)
 .bot-recommendations {
-  animation: slide-in-from-left 0.3s forwards; /* Slide-in animation from the left */
+  // animation: slide-in-from-left 0.3s forwards; /* Slide-in animation from the left */
   display: flex; /* Use Flexbox for layout */
   flex-wrap: wrap; /* Allow tiles to wrap to the next line if needed */
   gap: $tile-spacing; /* Space between recommendation tiles */
@@ -21,6 +21,7 @@ $text-color: #333; /* Default text color for labels */
     transition: box-shadow 0.3s; /* Smooth transition for hover effects */
     width: $tile-width; /* Fixed width for consistency */
     background-color: #404040; /* Dark background color */
+    animation: bounce-in 0.3s forwards;
 
     a {
       text-decoration: none; /* Remove text underlines for links */

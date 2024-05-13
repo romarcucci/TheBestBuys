@@ -1,3 +1,5 @@
+@import '../../utils';
+
 // Primary color for the suggestions
 $primary-color: #0084ff;
 
@@ -6,18 +8,6 @@ $animation-duration: 0.3s;
 
 // Border radius for the suggestions
 $border-radius: 15px;
-
-// Keyframe animation for slide-in effect
-@keyframes slide-in-from-top {
-  from {
-    transform: translateY(-100%); // Start from the top
-    opacity: 0; // Completely transparent
-  }
-  to {
-    transform: translateY(0); // Slide into original position
-    opacity: 1; // Fully visible
-  }
-}
 
 // Container for user suggestions
 .user-suggestion {
@@ -36,8 +26,11 @@ $border-radius: 15px;
     padding: 10px; // Padding around the suggestion
     border: 2px solid $primary-color; // Border color
     border-radius: $border-radius; // Apply consistent border radius
-    cursor: pointer; // Change cursor to indicate clickability
-    animation: slide-in-from-top $animation-duration forwards; // Apply slide-in animation
+    cursor: pointer;
+    transition:
+      background-color 0.3s,
+      color 0.3s; /* Smooth transition effect */
+    animation: bounce-in 0.3s forwards;
     color: white; // Default text color
 
     &:hover {

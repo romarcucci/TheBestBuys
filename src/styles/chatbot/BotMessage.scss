@@ -1,3 +1,5 @@
+@import '../../utils';
+
 // Common styling variables for the bot message component
 $tile-spacing: 10px; /* Space between tiles */
 $tile-border-radius: 10px; /* Rounded corners for tiles */
@@ -10,24 +12,12 @@ $tile-hover-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1); /* Shadow effect on hover */
 $profile-picture-size: 30px; /* Fixed size for the bot's profile picture */
 $border-radius: 15px; /* Rounded corners for general elements */
 
-// Keyframes for animations
-@keyframes slide-in-from-left {
-  from {
-    transform: translateX(-100%); /* Start off-screen to the left */
-    opacity: 0; /* Initially invisible */
-  }
-  to {
-    transform: translateX(0); /* Move to original position */
-    opacity: 1; /* Fully visible */
-  }
-}
-
 // Styling for the chat message component
 .chat-msg {
   &.bot-message {
     flex-direction: row; /* Profile picture on the left, text on the right */
     align-self: flex-start; /* Align message to the start (left) */
-    animation: slide-in-from-left 0.3s forwards; /* Animation for entering from the left */
+    // animation: slide-in-from-left 0.3s forwards; /* Animation for entering from the left */
 
     // Styling for the profile picture
     .profile-picture {
@@ -44,6 +34,7 @@ $border-radius: 15px; /* Rounded corners for general elements */
       color: $text-color; /* Use the defined text color */
       padding: $tile-spacing; /* Padding around the content */
       border-radius: $border-radius; /* Use defined border radius for rounded corners */
+      animation: bounce-in 0.3s forwards;
     }
   }
 }
