@@ -1,43 +1,11 @@
-import React, { useState } from 'react';
-
-// Icons
-import {
-  FaMobileAlt,
-  FaTv,
-  FaLaptop,
-  FaRegClock,
-  FaHeadphones,
-  FaHeadphonesAlt,
-  FaCamera,
-  FaBluetooth,
-  FaVolumeUp,
-  FaProjectDiagram,
-  FaDesktop,
-  FaGamepad,
-} from 'react-icons/fa';
+import React from 'react';
 
 // Styles
 import '../../styles/chatbot/CategoriesGrid.scss';
 
 // Functional component that displays a grid of product categories
-const ProductGrid = ({ onCategoryClick }) => {
-  const [categoriesList, setCategoriesList] = useState([
-    { label: 'Smartphone', icon: <FaMobileAlt /> },
-    { label: 'TV', icon: <FaTv /> },
-    { label: 'Laptop', icon: <FaLaptop /> },
-    { label: 'Smartwatch', icon: <FaRegClock /> },
-    { label: 'Headphones', icon: <FaHeadphones /> },
-    { label: 'Earbuds', icon: <FaHeadphonesAlt /> },
-    { label: 'Camera', icon: <FaCamera /> },
-    { label: 'Wireless speaker', icon: <FaBluetooth /> },
-    { label: 'Soundbar', icon: <FaVolumeUp /> },
-    { label: 'Video projector', icon: <FaProjectDiagram /> },
-    { label: 'Monitor', icon: <FaDesktop /> },
-    { label: 'Video game console', icon: <FaGamepad /> },
-  ]);
-
+const ProductGrid = ({ onCategoryClick, categoriesList }) => {
   const handleCategoryClick = (category) => {
-    setCategoriesList([]);
     onCategoryClick(category);
   };
 

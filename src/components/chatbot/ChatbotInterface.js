@@ -11,6 +11,22 @@ import ScrollBackButton from './ScrollBackButton';
 import UserSuggestion from './UserSuggestion';
 import CategoriesGrid from './CategoriesGrid';
 
+// Icons
+import {
+  FaMobileAlt,
+  FaTv,
+  FaLaptop,
+  FaRegClock,
+  FaHeadphones,
+  FaHeadphonesAlt,
+  FaCamera,
+  FaBluetooth,
+  FaVolumeUp,
+  FaProjectDiagram,
+  FaDesktop,
+  FaGamepad,
+} from 'react-icons/fa';
+
 // Styles
 import '../../styles/chatbot/ChatbotInterface.scss';
 
@@ -22,6 +38,20 @@ const ChatbotInterface = () => {
   const [isLoading, setIsLoading] = useState(false); // Loading state for async operations
   const [showScrollBackButton, setShowScrollBackButton] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
+  const [categoriesList, setCategoriesList] = useState([
+    { label: 'Smartphone', icon: <FaMobileAlt /> },
+    { label: 'TV', icon: <FaTv /> },
+    { label: 'Laptop', icon: <FaLaptop /> },
+    { label: 'Smartwatch', icon: <FaRegClock /> },
+    { label: 'Headphones', icon: <FaHeadphones /> },
+    { label: 'Earbuds', icon: <FaHeadphonesAlt /> },
+    { label: 'Camera', icon: <FaCamera /> },
+    { label: 'Wireless speaker', icon: <FaBluetooth /> },
+    { label: 'Soundbar', icon: <FaVolumeUp /> },
+    { label: 'Video projector', icon: <FaProjectDiagram /> },
+    { label: 'Monitor', icon: <FaDesktop /> },
+    { label: 'Video game console', icon: <FaGamepad /> },
+  ]);
   const [userId, setUserId] = useState('');
 
   // Ref to keep track of the chat log for auto-scrolling
@@ -61,6 +91,8 @@ const ChatbotInterface = () => {
 
   const sendMessage = async (userMessage) => {
     try {
+      setCategoriesList([]);
+
       // Send the user message to the server
       const response = await axios.post('http://localhost:3000/chat', {
         message: userMessage,
@@ -159,6 +191,7 @@ const ChatbotInterface = () => {
     }
 
     setIsLoading(true); // Set loading state to true
+    setCategoriesList([]);
 
     setChatLog((prev) => [
       ...prev,
@@ -225,7 +258,10 @@ const ChatbotInterface = () => {
           )}
           onSuggestionClick={handleSuggestionClick}
         />
-        <CategoriesGrid onCategoryClick={handleCategoryClick} />
+        <CategoriesGrid
+          onCategoryClick={handleCategoryClick}
+          categoriesList={categoriesList}
+        />
         {showScrollBackButton && (
           <ScrollBackButton
             onScrollToBottom={() =>
