@@ -9,6 +9,7 @@ $font-size: 16px;
   padding: 15px; /* Padding around the container */
   display: flex; /* Use Flexbox for layout */
   justify-content: center; /* Center the content horizontally */
+  border-top: 1px solid #ccc;
 
   // Styling for the chat text input area
   .chat-input {
