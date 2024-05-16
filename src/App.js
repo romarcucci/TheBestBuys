@@ -1,10 +1,7 @@
 import React from 'react';
-// import React, { useState } from 'react';
 
 // Components
 import Header from './components/Header';
-// import HeroSection from './components/HeroSection';
-// import ProductGrid from './components/ProductGrid';
 import ChatbotInterface from './components/chatbot/ChatbotInterface';
 import Footer from './components/Footer';
 
@@ -34,4 +31,4 @@ const App = () => {
   );
 };
 
-export default App; // Exporting the App component for use in the application
+export default App;

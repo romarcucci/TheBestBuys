@@ -1,6 +1,6 @@
 .scroll-back-button {
   position: absolute; // Fixed positioning to keep it at the same spot during scrolling
-  top: 88vh;
+  top: calc(88vh - 100px);
   left: 50%; // Centered horizontally
   transform: translateX(-50%); // Centers the button horizontally
   background-color: rgba(

@@ -10,12 +10,12 @@ $footer-flex-direction: row; /* Flexbox direction, keeping elements in a row */
 .footer {
   background-color: $footer-bg-color; /* Use defined background color */
   color: $footer-text-color; /* Use defined text color */
-  // margin-top: $footer-margin-top; /* Apply margin on top to separate from content above */
   padding-top: $footer-padding-top; /* Apply padding on top */
   padding-bottom: $footer-padding-bottom; /* Apply padding on bottom */
   display: flex; /* Use Flexbox for layout */
   justify-content: space-between; /* Spread content across the width */
   align-items: center; /* Vertically center the content */
+  height: 30px;
 }
 
 // Styling for the left side of the footer

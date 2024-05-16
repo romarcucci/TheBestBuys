@@ -16,11 +16,9 @@ $breakpoint-tablet: 768px; // Width for tablet responsiveness
   background-color: $chatinterface-bg-color; // Set background color
   display: flex; // Use Flexbox layout
   flex-direction: column; // Stack items vertically
-  // border-radius: $border-radius;
   max-width: 60%; // Restrict max width to 60%
   margin: 0 auto; // Center horizontally
-  height: 90vh;
-  // margin-top: 5vh;
+  height: calc(100vh - 150px);
 
   // Adjust layout based on device size
   @media (max-width: $breakpoint-tablet) {
