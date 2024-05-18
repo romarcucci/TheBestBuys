@@ -104,6 +104,11 @@ $breakpoint-tablet: 768px; // Width for tablet responsiveness
           font-size: $product-icon-size;
         }
       }
+
+      .category-label {
+        margin-top: 10px;
+        text-align: center;
+      }
     }
   }
 }
