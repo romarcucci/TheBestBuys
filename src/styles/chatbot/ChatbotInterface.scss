@@ -6,6 +6,7 @@ $bot-bg-color: #607d8b; // Background color for bot messages
 $chatinterface-bg-color: #262626; // Background color for the chat interface
 $text-color: #fff; // White text color
 $border-radius: 15px; // General border radius for smooth edges
+$product-icon-size: 100px;
 
 // Define breakpoints for responsive design
 $breakpoint-smartphone: 480px; // Width for smartphone responsiveness
@@ -69,7 +70,8 @@ $breakpoint-tablet: 768px; // Width for tablet responsiveness
       align-self: flex-end; // Align to the right
       animation: bounce-in 0.3s forwards;
       width: fit-content; /* Set width of category tile */
-      height: 60px; /* Set height of category tile */
+      height: 120px; /* Set height of category tile */
+      max-width: 120px;
       border: 2px solid #f2f2f2; /* Set border */
       border-radius: 15px;
       display: flex;
@@ -78,8 +80,8 @@ $breakpoint-tablet: 768px; // Width for tablet responsiveness
       justify-content: center;
       text-align: center;
       padding: 10px; /* Add padding for icon and label */
-      padding-right: 20px;
-      padding-left: 20px;
+      padding-right: 10px;
+      padding-left: 10px;
       margin-top: 15px; // Margin at the bottom
       margin-bottom: 15px; // Margin at the bottom
       text-decoration: none; /* Remove default text decoration */
@@ -87,7 +89,20 @@ $breakpoint-tablet: 768px; // Width for tablet responsiveness
       color: #4d4d4d; /* Change color of icon and label on hover */
 
       .icon-wrapper {
-        font-size: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70px;
+
+        img {
+          max-width: 100%;
+          max-height: 100%;
+          object-fit: contain; // This will maintain the aspect ratio of the image
+        }
+
+        svg {
+          font-size: $product-icon-size;
+        }
       }
     }
   }

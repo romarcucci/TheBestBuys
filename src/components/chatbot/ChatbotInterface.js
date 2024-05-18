@@ -11,21 +11,19 @@ import ScrollBackButton from './ScrollBackButton';
 import UserSuggestion from './UserSuggestion';
 import CategoriesGrid from './CategoriesGrid';
 
-// Icons
-import {
-  FaMobileAlt,
-  FaTv,
-  FaLaptop,
-  FaRegClock,
-  FaHeadphones,
-  FaHeadphonesAlt,
-  FaCamera,
-  FaBluetooth,
-  FaVolumeUp,
-  FaProjectDiagram,
-  FaDesktop,
-  FaGamepad,
-} from 'react-icons/fa';
+// Images
+import smartphoneImage from '../../assets/images/Categories/smartphone.png';
+import laptopImage from '../../assets/images/Categories/laptop.png';
+import tvImage from '../../assets/images/Categories/tv.png';
+import smartwatchImage from '../../assets/images/Categories/smartwatch.png';
+import headphonesImage from '../../assets/images/Categories/headphones.png';
+import earbudsImage from '../../assets/images/Categories/earbuds.png';
+import cameraImage from '../../assets/images/Categories/camera.png';
+import speakerImage from '../../assets/images/Categories/speaker.png';
+import soundbarImage from '../../assets/images/Categories/soundbar.png';
+import videoProjectorImage from '../../assets/images/Categories/video_projector.png';
+import monitorImage from '../../assets/images/Categories/monitor.png';
+import videoGameConsoleImage from '../../assets/images/Categories/video_game_console.png';
 
 // Styles
 import '../../styles/chatbot/ChatbotInterface.scss';
@@ -39,18 +37,33 @@ const ChatbotInterface = () => {
   const [showScrollBackButton, setShowScrollBackButton] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
   const [categoriesList, setCategoriesList] = useState([
-    { label: 'Smartphone', icon: <FaMobileAlt /> },
-    { label: 'TV', icon: <FaTv /> },
-    { label: 'Laptop', icon: <FaLaptop /> },
-    { label: 'Smartwatch', icon: <FaRegClock /> },
-    { label: 'Headphones', icon: <FaHeadphones /> },
-    { label: 'Earbuds', icon: <FaHeadphonesAlt /> },
-    { label: 'Camera', icon: <FaCamera /> },
-    { label: 'Wireless speaker', icon: <FaBluetooth /> },
-    { label: 'Soundbar', icon: <FaVolumeUp /> },
-    { label: 'Video projector', icon: <FaProjectDiagram /> },
-    { label: 'Monitor', icon: <FaDesktop /> },
-    { label: 'Video game console', icon: <FaGamepad /> },
+    {
+      label: 'Smartphone',
+      icon: <img src={smartphoneImage} alt="Smartphone" />,
+    },
+    { label: 'Laptop', icon: <img src={laptopImage} alt="Laptop" /> },
+    { label: 'TV', icon: <img src={tvImage} alt="TV" /> },
+    {
+      label: 'Smartwatch',
+      icon: <img src={smartwatchImage} alt="Smartwatch" />,
+    },
+    {
+      label: 'Headphones',
+      icon: <img src={headphonesImage} alt="Headphones" />,
+    },
+    { label: 'Earbuds', icon: <img src={earbudsImage} alt="Earbuds" /> },
+    { label: 'Camera', icon: <img src={cameraImage} alt="Camera" /> },
+    { label: 'Speaker', icon: <img src={speakerImage} alt="Speaker" /> },
+    { label: 'Soundbar', icon: <img src={soundbarImage} alt="Soundbar" /> },
+    {
+      label: 'Video Projector',
+      icon: <img src={videoProjectorImage} alt="Video Projector" />,
+    },
+    { label: 'Monitor', icon: <img src={monitorImage} alt="Monitor" /> },
+    {
+      label: 'Video Game Console',
+      icon: <img src={videoGameConsoleImage} alt="Video Game Console" />,
+    },
   ]);
   const [userId, setUserId] = useState('');
 
