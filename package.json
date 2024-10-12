@@ -1,37 +1,32 @@
 {
-  "name": "the_best_buys",
+  "name": "urbanis",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@types/react": "^18.3.11",
-    "@types/react-dom": "^18.3.1",
-    "axios": "^1.6.8",
-    "body-parser": "^1.20.2",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.108",
+    "@types/react": "^18.3.8",
+    "@types/react-dom": "^18.3.0",
+    "axios": "^1.7.7",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "fetch": "^1.1.0",
-    "openai": "^4.40.0",
-    "postcss": "^8.4.38",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^5.2.0",
-    "react-router-dom": "^6.23.0",
-    "react-scripts": "^3.4.4",
-    "react-slick": "^0.30.2",
-    "slick-carousel": "^1.8.1",
-    "tailwindcss": "^3.4.3",
-    "typescript": "3.2.4",
-    "web-vitals": "^2.1.4",
-    "ws": "^8.17.0"
+    "express": "^4.21.0",
+    "mapbox-gl": "^3.6.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.3.0",
+    "react-router-dom": "^6.26.2",
+    "react-scripts": "5.0.1",
+    "sass": "^1.79.3",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
-    "build": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
-    "test": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts test",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -51,10 +46,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "globals": "^15.1.0",
-    "prettier": "^3.2.5",
-    "sass": "^1.76.0"
   }
 }
