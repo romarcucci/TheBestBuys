@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
-const cors = require('cors');
+// const cors = require('cors');
 const app = express();
 const { v4: uuidv4 } = require('uuid'); // For generating unique user IDs
 
@@ -12,11 +12,20 @@ const openaiApiKey = 'sk-proj-ZQpGexrIrVRHxP3w5MQWT3BlbkFJQF0elqQCJGjkCPtUzVwS';
 const conversations = {};
 
 // Middleware pour parser le corps des requêtes POST
-app.use(cors());
-app.use(bodyParser.json());
+// app.use(cors());
+// app.use(bodyParser.json());
 
 // app.post('/chat', async (req, res) => {
 export default async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+
   const userMessage = req.body.message;
   const userId = req.body.userId || uuidv4(); // Extract userId from request or generate a new one
 
