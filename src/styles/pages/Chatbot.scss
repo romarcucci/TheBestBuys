@@ -1,0 +1,17 @@
+/* Variables for background video */
+$video-position: fixed; /* Video is fixed in place */
+$video-width: 100%; /* Video spans the entire width */
+$video-height: 100%; /* Video spans the entire height */
+$video-object-fit: cover; /* Video covers the entire area */
+$video-z-index: -1; /* Video stays in the background */
+
+/* Styling for the background video */
+.background-video {
+  position: $video-position; /* Fix the video in place */
+  top: 0; /* Align the top edge with the top of the viewport */
+  left: 0; /* Align the left edge with the left of the viewport */
+  width: $video-width; /* Set the width to 100% */
+  height: $video-height; /* Set the height to 100% */
+  object-fit: $video-object-fit; /* Ensure the video fills the entire area without distorting */
+  z-index: $video-z-index; /* Position the video behind other content */
+}

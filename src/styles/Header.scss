@@ -1,14 +1,16 @@
 .navigation-bar {
   position: fixed;
-  margin-left: 15px;
+  padding-left: 15px;
   top: 0;
   height: 100%;
   transition: width 0.3s ease;
   width: 60px;
+  background-color: #111b21;
   -webkit-tap-highlight-color: transparent;
 
   &.expanded {
     width: 200px;
+    padding-right: 15px;
   }
 
   a {
