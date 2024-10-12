@@ -15,7 +15,8 @@ const conversations = {};
 app.use(cors());
 app.use(bodyParser.json());
 
-app.post('/chat', async (req, res) => {
+// app.post('/chat', async (req, res) => {
+export default async function handler(req, res) {
   const userMessage = req.body.message;
   const userId = req.body.userId || uuidv4(); // Extract userId from request or generate a new one
 
@@ -105,7 +106,8 @@ app.post('/chat', async (req, res) => {
       .status(500)
       .json({ message: 'Erreur lors de la communication avec GPT-3.5 Turbo' });
   }
-});
+}
+// });
 
 const PORT = process.env.PORT || 3000;
 
