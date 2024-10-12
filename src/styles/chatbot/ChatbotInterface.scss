@@ -19,7 +19,7 @@ $breakpoint-tablet: 768px; // Width for tablet responsiveness
   flex-direction: column; // Stack items vertically
   max-width: 60%; // Restrict max width to 60%
   margin: 0 auto; // Center horizontally
-  height: calc(100vh - 150px);
+  height: calc(100vh - 30px);
 
   // Adjust layout based on device size
   @media (max-width: $breakpoint-tablet) {

@@ -1,23 +1,110 @@
-$header-bg-color: #f0f0f0; // Light gray background color for the header
-$header-padding: 0; // No padding for the header
-$header-height: 100px; // Fixed height for the header (10% of viewport height)
-$logo-font-size: 1.5em; // Size of the logo font
-$logo-font-weight: bold; // Bold font for the logo
-$logo-text-transform: uppercase; // Uppercase text for the logo
+.navigation-bar {
+  position: fixed;
+  margin-left: 15px;
+  top: 0;
+  height: 100%;
+  transition: width 0.3s ease;
+  width: 60px;
+  -webkit-tap-highlight-color: transparent;
 
-// Styling for the header section
-.header {
-  display: flex; // Use Flexbox for layout
-  justify-content: center; // Center elements horizontally
-  align-items: center; // Center elements vertically
-  padding: $header-padding; // Use defined padding for consistency
-  background-color: $header-bg-color; // Use predefined background color
-  height: $header-height; // Use defined header height
+  &.expanded {
+    width: 200px;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+
+    &:visited {
+      color: inherit;
+    }
+  }
+
+  .top-bar {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-top: 20px;
+
+    .icon {
+      font-size: 24px;
+      color: #00a884;
+    }
+
+    .website-title {
+      margin-left: 10px;
+      font-size: 12px;
+      user-select: none;
+      color: #00a884;
+      font-weight: bold;
+      align-content: center;
+    }
+
+    .toggle-button {
+      margin-left: -10px;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 50%;
+      font-size: 20px;
+
+      &:hover {
+        background-color: rgba(208, 208, 208, 0.2);
+      }
+
+      &.expanded {
+        margin-left: 40px;
+      }
+    }
+  }
+
+  .category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    .category-item {
+      display: flex;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition:
+        background-color 0.3s,
+        border-radius 0.3s;
+
+      &:hover,
+      &.selected {
+        background-color: rgba(208, 208, 208, 0.2);
+        color: #00a884;
+      }
+
+      .icon {
+        font-size: 20px;
+      }
+
+      .category-title {
+        margin-left: 10px;
+        font-size: 16px;
+      }
+    }
+  }
+
+  &.expanded .category-item {
+    width: 100%;
+  }
 }
 
-// Styling for the logo element within the header
-.logo {
-  font-size: $logo-font-size; // Use predefined font size
-  font-weight: $logo-font-weight; // Apply defined font weight
-  text-transform: $logo-text-transform; // Ensure text is uppercase
+// Main content
+.main-content {
+  margin-left: 60px;
+  padding: 15px;
+  padding-top: 30px;
+  padding-bottom: 0;
+  flex-grow: 1;
+  transition: margin-left 0.3s ease;
+
+  .header.expanded + & {
+    margin-left: 215px;
+  }
 }

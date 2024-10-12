@@ -1,0 +1,5 @@
+.home-page {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(99%, 1fr));
+}
