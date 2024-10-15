@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const axios = require('axios');
+const axios = require('axios/dist/node/axios.cjs');
 // const cors = require('cors');
 const app = express();
 const cors = require('cors');
