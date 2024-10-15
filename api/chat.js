@@ -1,9 +1,4 @@
-const express = require('express');
-const bodyParser = require('body-parser');
 const axios = require('axios/dist/node/axios.cjs');
-// const cors = require('cors');
-const app = express();
-const cors = require('cors');
 const { v4: uuidv4 } = require('uuid'); // For generating unique user IDs
 
 const openaiChatUrl = 'https://api.openai.com/v1/chat/completions';
@@ -11,17 +6,7 @@ const openaiImageUrl = 'https://api.openai.com/v1/images/generations';
 const openaiApiKey = 'sk-proj-ZQpGexrIrVRHxP3w5MQWT3BlbkFJQF0elqQCJGjkCPtUzVwS';
 
 const conversations = {};
-const corsOptions = {
-  origin: 'https://your-vercel-domain.vercel.app', // Replace with your Vercel domain
-  optionsSuccessStatus: 200,
-};
 
-app.use(cors(corsOptions));
-// Middleware pour parser le corps des requêtes POST
-// app.use(cors());
-// app.use(bodyParser.json());
-
-// app.post('/chat', async (req, res) => {
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
@@ -123,7 +108,3 @@ export default async function handler(req, res) {
   }
 }
 // });
-
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
