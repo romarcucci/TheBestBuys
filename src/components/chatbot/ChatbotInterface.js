@@ -108,7 +108,7 @@ const ChatbotInterface = () => {
 
       // Send the user message to the server
       const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001';
-      const response = await axios.post(`${apiUrl}/api/chat`, {
+      const response = await axios.post(`${apiUrl}/chat`, {
         // const response = await axios.post('http://localhost:3000/chat', {
         message: userMessage,
         userId: userId,
