@@ -7,9 +7,14 @@ $text-color: #333; /* Default text color for labels */
 
 // Styling for Bot Recommendations (with slide-in animation)
 .bot-recommendations {
+  display: grid !important; /* Use grid layout for recommendation tiles */
   gap: $tile-spacing; /* Space between recommendation tiles */
   margin-top: 10px; /* Margin at the top of the container */
   margin-left: 40px; /* Margin on the left of the container */
+  grid-template-columns: repeat(
+    auto-fill,
+    $tile-width + 2 * $tile-spacing
+  ); /* Auto-fit columns based on tile width */
 
   // Styling for individual recommendation tiles
   .recommendation-tile {
