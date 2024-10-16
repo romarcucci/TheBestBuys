@@ -13,6 +13,7 @@ $text-color: #333; /* Default text color for labels */
 
   // Styling for individual recommendation tiles
   .recommendation-tile {
+    -webkit-tap-highlight-color: transparent;
     border-radius: $tile-border-radius; /* Apply rounded corners */
     text-align: center; /* Center-align text and content */
     padding: 10px; /* Padding inside the tile */
@@ -21,13 +22,13 @@ $text-color: #333; /* Default text color for labels */
     background-color: #404040; /* Dark background color */
     animation: bounce-in 0.3s forwards;
 
-    a {
-      text-decoration: none; /* Remove text underlines for links */
-    }
-
     // Styling for the text area of the tile
     .test-affiliated-link {
       color: $recommendation-bg-color; /* Text color for affiliated links */
     }
+  }
+
+  a {
+    text-decoration: none; /* Remove text underlines for links */
   }
 }

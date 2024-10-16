@@ -6,7 +6,6 @@
   transition: width 0.3s ease;
   width: 60px;
   background-color: #111b21;
-  -webkit-tap-highlight-color: transparent;
 
   &.expanded {
     width: 200px;
@@ -71,9 +70,7 @@
       margin-top: 5px;
       border-radius: 10px;
       cursor: pointer;
-      transition:
-        background-color 0.3s,
-        border-radius 0.3s;
+      transition: background-color 0.3s, border-radius 0.3s;
 
       &:hover,
       &.selected {
