@@ -1,3 +1,7 @@
+// Define breakpoints for responsive design
+$breakpoint-smartphone: 480px; // Width for smartphone responsiveness
+$breakpoint-tablet: 768px; // Width for tablet responsiveness
+
 .navigation-bar {
   position: fixed;
   padding-left: 15px;
@@ -105,5 +109,20 @@
 
   .header.expanded + & {
     margin-left: 215px;
+  }
+
+  // Adjust layout based on device size
+  @media (max-width: $breakpoint-tablet) {
+    max-width: 80%; // Expand to 80% on tablets
+    height: calc(100vh - 20px);
+    padding: 0px;
+    padding-left: 15px;
+  }
+
+  @media (max-width: $breakpoint-smartphone) {
+    max-width: 100%; // Full width on smartphones
+    height: calc(100vh);
+    padding: 0px;
+    padding-left: 15px;
   }
 }

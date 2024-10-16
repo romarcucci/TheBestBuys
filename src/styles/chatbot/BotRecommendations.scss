@@ -13,7 +13,6 @@ $text-color: #333; /* Default text color for labels */
 
   // Styling for individual recommendation tiles
   .recommendation-tile {
-    -webkit-tap-highlight-color: transparent;
     border-radius: $tile-border-radius; /* Apply rounded corners */
     text-align: center; /* Center-align text and content */
     padding: 10px; /* Padding inside the tile */
