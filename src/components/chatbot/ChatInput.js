@@ -21,7 +21,7 @@ const ChatInput = ({
     if (!isLoading) {
       if (chatInputRef) {
         if (chatInputRef.current) {
-          chatInputRef.current.querySelector('textarea').focus();
+          // chatInputRef.current.querySelector('textarea').focus();
         }
       }
     }
