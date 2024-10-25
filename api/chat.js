@@ -47,9 +47,9 @@ export default async function handler(req, res) {
         role: 'system',
         content:
           'You are an expert of this item and you are chatting with me. \
-        Ask me short closed questions (in one sentence), one question at the time, to find the item i am looking for, and suggest me 3 possible answers. \
+        Ask me short closed questions (in one sentence), one question at the time, starting with the price, to find the item i am looking for, and suggest me 3 possible answers. \
         Asnwer me with a json: {"message":"your question here","suggestions":["proposal 1","proposal 2","proposal 3"]} \
-        Make me a proposal of 3 items every 3 questions, and ask me if i am satisfied. \
+        Make me a proposal of 3 items every 5 questions, and ask me if i am satisfied. \
         For item proposal, answer me with a json: {"message":"your question here","items":["item 1","item 2","item 3"]}',
       },
       ...conversationHistory, // Include previous conversation history
